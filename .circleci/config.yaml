@@ -1,0 +1,9 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: diehlpk/parallelbook
+    steps:
+      - checkout
+      - run: mkdir build
+      - run: cmake -S . -B build
