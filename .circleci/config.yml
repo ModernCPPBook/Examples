@@ -7,3 +7,4 @@ jobs:
       - checkout
       - run: mkdir build
       - run: cmake -S . -B build
+      - run: cd build && make -j 2
