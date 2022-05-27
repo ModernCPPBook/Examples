@@ -9,7 +9,25 @@ project(Examples
 
 cmake_minimum_required(VERSION 3.19)
 
-set(CMAKE_CXX_STANDARD 17)
+include(CheckCXXCompilerFlag)
+
+check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
+
+if(HAVE_FLAG_STD_CXX20)
+
+    set(CMAKE_CXX_STANDARD 20)
+
+else()
+
+    check_cxx_compiler_flag(-std=c++17 HAVE_FLAG_STD_CXX17)
+    
+    if(HAVE_FLAG_STD_CXX17)
+
+        set(CMAKE_CXX_STANDARD 17)
+    else()
+         message( FATAL_ERROR "Your compiler needs to support at least CXX 17")
+    endif()
+endif()
 
 add_subdirectory(util)
 add_subdirectory(appendix)
