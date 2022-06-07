@@ -7,6 +7,7 @@ add_executable(template templates.cpp)
 add_executable(lambda lambda.cpp)
 add_executable(move move.cpp)
 add_executable(ranges_pure ranges_pure.cpp)
+add_executable(unique_pointer unique_pointer.cpp)
 
 if(HAVE_FLAG_STD_CXX20 AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 add_executable(ranges ranges.cpp)
