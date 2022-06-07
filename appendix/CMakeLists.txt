@@ -8,6 +8,6 @@ add_executable(lambda lambda.cpp)
 add_executable(move move.cpp)
 add_executable(ranges_pure ranges_pure.cpp)
 
-if(HAVE_FLAG_STD_CXX20)
+if(HAVE_FLAG_STD_CXX20 AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 add_executable(ranges ranges.cpp)
 endif()
