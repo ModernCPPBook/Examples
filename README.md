@@ -2,7 +2,7 @@
 
 ## Building the examples
 
-We use [CMake](https://cmake.org/) as the build system to compile the various examples. To compile the serial C++ example, you can run the following commands in the root folder
+We use [CMake](https://cmake.org/) as the build system to compile the various examples. To compile the serial C++ examples, you can run the following commands in the root folder
 
 ```bash
 mkdir build 
