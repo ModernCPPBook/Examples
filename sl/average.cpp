@@ -1,18 +1,16 @@
 #include <iostream>
 
-int main(void){
+int main(void) {
+  double sum = 0;
+  size_t count = 0;
+  double x = 0;
 
-double sum = 0 ;
-size_t count = 0;
-double x = 0;
+  while (std::cin >> x) {
+    sum += x;
+    ++count;
+  }
 
-while (std::cin >> x)  
-{
-	sum += x;
-	++count;
-}
+  std::cout << "Average: " << sum / count << std::endl;
 
-std::cout << "Average: " << sum /count << std::endl; 
-
-return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
