@@ -13,6 +13,10 @@ make
 
 ## Outline
 
+### Mandelbrot and Julia sets
+
+All the examples for the fractal sets of the book can be found [here](https://github.com/ModernCPPBook/Examples/tree/main/set). We start with the serial implementation. For the shared memory parallism the parallel algorithms of the C++ SL and asynchronous programming are used. Last, the distributed implementaiton using HPX.
+ 
 ### Appendix
 
 All the examples for the Appendix of the book can be found [here](https://github.com/ModernCPPBook/Examples/tree/main/appendix). Here, we look into advanced C++ features like ranges, replacement new, move semantics, and lambda funcitons. 
