@@ -1,17 +1,5 @@
-#include <complex>
-#include <numbers>
+#include "config.h"
 #include <pbm.hpp>
-#include <numbers>
-
-typedef std::complex<double> complex;
-
-
-// Definiton of constants
-const double pi = std::numbers::pi;
-const size_t max_iteration = 80;
-const size_t size_x = 600;
-const size_t size_y = 400;
-const char type = 'm';
 
 // Defintion of utility
 PBM pbm = PBM(size_x, size_y);
