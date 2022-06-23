@@ -1,6 +1,7 @@
 #include <complex>
 #include <numbers>
 #include <pbm.hpp>
+#include <numbers>
 
 typedef std::complex<double> complex;
 
@@ -10,7 +11,7 @@ const double pi = std::numbers::pi;
 const size_t max_iteration = 80;
 const size_t size_x = 600;
 const size_t size_y = 400;
-const char* type = 'mandelbrot'
+const char type = 'm';
 
 // Defintion of utility
 PBM pbm = PBM(size_x, size_y);
@@ -27,24 +28,28 @@ std::tuple<size_t, size_t, size_t> get_rgb(int value) {
 
 // Kernel to compute the Mandeklbrot set
 size_t mandelbrot(complex c){
-    
-	return  z * z + c;
-   
+   std::complex<double> z(0, 0); 
+for (size_t i = 0; i < max_iteration; i++) {
+z = z * z + c;
+ if (abs(z) > 2.0) {
+      return i;
+
+}
+}
+	return  0;
+  
 }
 
 // Function to comoute the Mandelbrot set for a pixel
 size_t compute_pixel(complex c) {
   std::complex<double> z(0, 0);
   for (size_t i = 0; i < max_iteration; i++) {
-    if (type == "mandelbrot")
-	z = mandelbrot(c);
-    else 
-        z = julia(c);
-
-    if (abs(z) > 2.0) {
-      return i;
+    if (type == 'm')
+	  return mandelbrot(c);
+    //else 
+//        z = julia(c);
     }
-  }
+  
   return 0;
 }
 
