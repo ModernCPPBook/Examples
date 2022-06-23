@@ -29,7 +29,6 @@ else()
     endif()
 endif()
 
-add_subdirectory(util)
 add_subdirectory(appendix)
 add_subdirectory(sl)
 add_subdirectory(set)

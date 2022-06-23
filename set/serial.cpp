@@ -4,15 +4,7 @@
 // Defintion of utility
 PBM pbm = PBM(size_x, size_y);
 
-// Function to smoothen the coloring
-std::tuple<size_t, size_t, size_t> get_rgb(int value) {
-  double t = double(value) / double(max_iteration);
-  int r = (int)(9 * (1 - t) * t * t * t * 255);
-  int g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
-  int b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
 
-  return std::make_tuple(r, g, b);
-}
 
 // Kernel to compute the Mandeklbrot set
 size_t mandelbrot(complex c){

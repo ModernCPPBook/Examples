@@ -13,8 +13,15 @@
 #include <fstream>
 #include <vector>
 
-const int max_color = 256;
+// Function to smoothen the coloring
+std::tuple<size_t, size_t, size_t> get_rgb(int value) {
+  double t = double(value) / double(max_iteration);
+  int r = (int)(9 * (1 - t) * t * t * t * 255);
+  int g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+  int b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
 
+  return std::make_tuple(r, g, b);
+}
 // convert an rgb tuple to an int
 int make_color(int r, int g, int b) {
   assert(0 <= r && r < max_color);

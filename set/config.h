@@ -12,16 +12,14 @@
 #include <complex>
 #include <numbers>
 
-
-
 typedef std::complex<double> complex;
-
 
 // Definiton of constants
 const double pi = std::numbers::pi;
 const size_t max_iteration = 80;
 const size_t size_x = 600;
 const size_t size_y = 400;
+const int max_color = 256;
 const char type = 'm';
 
 #endif
