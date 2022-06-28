@@ -13,6 +13,7 @@
 #include <fstream>
 #include <vector>
 #include <cassert>
+#include <tuple>
 
 // Function to smoothen the coloring
 std::tuple<size_t, size_t, size_t> get_rgb(int value) {
