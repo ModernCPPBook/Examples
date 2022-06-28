@@ -7,11 +7,11 @@ PBM pbm = PBM(size_x, size_y);
 
 // Function to comoute the Mandelbrot set for a pixel
 size_t compute_pixel(complex c) {
-  std::complex<double> z(0, 0);
+  //std::complex<double> z(0, 0);
   for (size_t i = 0; i < max_iteration; i++) {
     if (type == 'm') return mandelbrot(c);
-    // else
-    //        z = julia(c);
+     else
+            return julia(c);
   }
 
   return 0;

@@ -20,6 +20,6 @@ const size_t max_iteration = 80;
 const size_t size_x = 600;
 const size_t size_y = 400;
 const int max_color = 256;
-const char type = 'm';
+const char type = 'j';
 
 #endif

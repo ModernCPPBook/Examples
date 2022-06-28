@@ -21,5 +21,17 @@ size_t mandelbrot(complex c) {
   return 0;
 }
 
+// Kernel to compute the Julia set
+size_t julia(complex z) {
+  std::complex<double> c(-0.4,0.6);
+  for (size_t i = 0; i < max_iteration; i++) {
+    z = z * z + c;
+    if (abs(z) > 2.0) {
+      return i;
+    }
+  }
+  return 0;
+}
+
 
 #endif
