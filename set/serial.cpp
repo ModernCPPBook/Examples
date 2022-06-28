@@ -34,6 +34,7 @@ size_t compute_pixel(complex c) {
 }
 
 int main(void) {
+
   for (size_t i = 0; i < size_x; i++) {
     // Compute c for z^2 < c
     complex c =
