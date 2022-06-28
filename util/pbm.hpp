@@ -10,10 +10,10 @@
 // Header for generating PBM image files
 // https://en.wikipedia.org/wiki/Netpbm
 
-#include <fstream>
-#include <vector>
 #include <cassert>
+#include <fstream>
 #include <tuple>
+#include <vector>
 
 // Function to smoothen the coloring
 std::tuple<size_t, size_t, size_t> get_rgb(int value) {
