@@ -14,6 +14,7 @@
 #include <fstream>
 #include <tuple>
 #include <vector>
+
 #include "../set/config.h"
 
 // Function to smoothen the coloring
