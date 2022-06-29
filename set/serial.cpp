@@ -5,14 +5,11 @@
 #include "config.h"
 #include "kernel.h"
 
-// Defintion of utility
-PBM pbm = PBM(size_x, size_y);
-
 // Function to comoute the Mandelbrot set for a pixel
 size_t compute_pixel(complex c) {
   // std::complex<double> z(0, 0);
   for (size_t i = 0; i < max_iteration; i++) {
-    if (type == 'm')
+    if (type == "mandelbrot")
       return mandelbrot(c);
     else
       return julia(c);
@@ -21,7 +18,13 @@ size_t compute_pixel(complex c) {
   return 0;
 }
 
-int main(void) {
+int main(int argc, char* argv[]) {
+
+ type = argv[1];
+
+ // Defintion of utility
+  PBM pbm = PBM(size_x, size_y);
+
   for (size_t i = 0; i < size_x; i++) {
     // Compute c for z^2 < c
     complex c =
@@ -39,7 +42,7 @@ int main(void) {
   }
 
   // Save the image
-  pbm.save("image_serial.pbm");
+  pbm.save("image_serial_"+type+".pbm");
 
   return EXIT_SUCCESS;
 }
