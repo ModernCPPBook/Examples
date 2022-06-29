@@ -1,6 +1,8 @@
 
 
 #include <pbm.hpp>
+#include <algorithm>
+#include <numeric>
 
 #include "config.h"
 #include "kernel.h"
@@ -25,9 +27,12 @@ int main(int argc, char* argv[]) {
  // Defintion of utility
   PBM pbm = PBM(size_x, size_y);
 
-  for (size_t i = 0; i < size_x; i++) {
-    // Compute c for z^2 < c
-    complex c =
+  std::vector<size_t> index(size_x);
+  std::iota(index.begin(),index.end(),0);
+
+  std::for_each(index.begin(),index.end(),[&pbm](size_t i){
+
+complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
     for (size_t j = 0; j < size_y; j++) {
@@ -39,7 +44,12 @@ int main(int argc, char* argv[]) {
       pbm(i, j) = make_color(std::get<0>(color), std::get<1>(color),
                              std::get<2>(color));
     }
-  }
+
+
+
+  });
+
+ 
 
   // Save the image
   pbm.save("image_serial_"+type+".pbm");
