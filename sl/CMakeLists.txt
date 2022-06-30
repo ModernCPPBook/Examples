@@ -4,3 +4,5 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 add_executable(average average.cpp)
+add_executable(array_language array_language.cpp)
+add_executable(array_container array_container.cpp)
