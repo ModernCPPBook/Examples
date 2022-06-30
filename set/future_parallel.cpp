@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 
   std::vector<std::future<void>> futures;
   std::for_each(index.begin(), index.end(), [&pbm,&futures](size_t i) {
-    std::future<void> f = std::async(std::launch::async,[&pbm](size_t i){
+    std::future<void> f = std::async(std::launch::async,[&pbm,i](){
       complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
         pbm(i, j) = make_color(std::get<0>(color), std::get<1>(color),
                                std::get<2>(color));
       }
-    },i);
+    });
     futures.push_back(std::move(f));
   });
   for(auto&& f : futures) f.wait();
