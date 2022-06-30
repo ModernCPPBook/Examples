@@ -5,22 +5,16 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #include <stdlib.h>
 
+int main(void) {
+  // Define the length of the array
+  size_t size = 6;
 
-int main(void){
+  // Generate the array
+  double array[size];
 
-// Define the length of the array
-size_t size = 6;
+  // Fill the array
+  for (size_t i = 0; i < size; i++) array[i] = i;
 
-// Generate the array
-double array[size];
-
-// Fill the array
-for (size_t i = 0 ; i < size ; i++)
-    array[i] = i;
-
-// Print the array
-for (size_t i = 0 ; i < size ; i++)
-    array[i] = i;
-
-
+  // Print the array
+  for (size_t i = 0; i < size; i++) array[i] = i;
 }
