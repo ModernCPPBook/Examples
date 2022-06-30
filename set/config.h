@@ -8,15 +8,15 @@
 #define CONFIG_HPP
 
 
-#include <numbers>
+// dependency on gcc snapshot
 #include <complex>
-#include <numbers>
-#include<string.h>
+#include <string.h>
+#include <cmath>
 
 typedef std::complex<double> complex;
 
 // Definiton of constants
-const double pi = std::numbers::pi;
+const double pi = M_PI;
 const size_t max_iteration = 80;
 const size_t size_x = 600;
 const size_t size_y = 400;

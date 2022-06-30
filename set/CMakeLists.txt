@@ -4,4 +4,11 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 add_executable(serial serial.cpp)
+add_executable(thread_parallel thread_parallel.cpp)
+
 target_include_directories(serial PUBLIC "../util/")
+target_include_directories(thread_parallel PUBLIC "../util/")
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(thread_parallel PRIVATE Threads::Threads)
