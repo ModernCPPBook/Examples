@@ -1,11 +1,17 @@
+//  Copyright (c) 2022 AUTHORS
+//
+//  SPDX-License-Identifier: BSL-1.0
+//  Distributed under the Boost Software License, Version 1.0. (See accompanying
+//  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
 #include <algorithm>
+#include <future>
+#include <iostream>
 #include <numeric>
 #include <pbm.hpp>
 
 #include "config.h"
 #include "kernel.h"
-#include <future>
-#include <iostream>
 
 // Function to comoute the Mandelbrot set for a pixel
 size_t compute_pixel(complex c) {
@@ -30,10 +36,10 @@ int main(int argc, char* argv[]) {
   std::iota(index.begin(), index.end(), 0);
 
   std::vector<std::future<void>> futures;
-  std::for_each(index.begin(), index.end(), [&pbm,&futures](size_t i) {
-    std::future<void> f = std::async(std::launch::async,[&pbm,i](){
+  std::for_each(index.begin(), index.end(), [&pbm, &futures](size_t i) {
+    std::future<void> f = std::async(std::launch::async, [&pbm, i]() {
       complex c =
-        complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
+          complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
       for (size_t j = 0; j < size_y; j++) {
         // Get the number of iterations
@@ -47,7 +53,7 @@ int main(int argc, char* argv[]) {
     });
     futures.push_back(std::move(f));
   });
-  for(auto&& f : futures) f.wait();
+  for (auto&& f : futures) f.wait();
 
   // Save the image
   pbm.save("image_future_parallel_" + type + ".pbm");
