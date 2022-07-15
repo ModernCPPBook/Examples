@@ -9,7 +9,7 @@ int main(void) {
   std::list<int>::iterator it = std::begin(values);
 
   for (; it != std::end(values); it++)
-    // Accesisng the elment using the dereference operator *
+    // Accessing the element using the dereference operator *
     std::cout << *it << std::endl;
 
   std::cout << "------" << std::endl;
