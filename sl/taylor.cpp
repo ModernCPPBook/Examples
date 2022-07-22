@@ -11,8 +11,7 @@ int main(int args, char** argv) {
   double x = std::stod(argv[2]);
 
   std::vector<double> parts(n);
-std:
-  iota(parts.begin(), parts.end(), 1);
+  std::iota(parts.begin(), parts.end(), 1);
 
   std::for_each(parts.begin(), parts.end(), [x](double& e) {
     e = std::pow(-1.0, e + 1) * std::pow(x, e) / (e);
