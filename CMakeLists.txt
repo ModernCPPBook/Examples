@@ -9,9 +9,18 @@ project(Examples
 
 cmake_minimum_required(VERSION 3.19)
 
+SET(WITH_PAR_ALG OFF CACHE BOOL "Build parallel algorithm example")
+
+
 include(CheckCXXCompilerFlag)
 
 check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
+
+if($WITH_PAR_ALG)
+    find_package(TBB REQUIRED)
+    add_subdirectory(parallel_algorithm)
+endif()
+
 
 if(HAVE_FLAG_STD_CXX20)
 
@@ -32,4 +41,3 @@ endif()
 add_subdirectory(appendix)
 add_subdirectory(sl)
 add_subdirectory(set)
-add_subdirectory(parallel_algorithm)

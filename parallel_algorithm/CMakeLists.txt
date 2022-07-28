@@ -9,6 +9,6 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     endif()
 
     add_executable(taylor_par taylor_par.cpp)
-    target_link_options(taylor_par PRIVATE -ltbb)
+    target_link_libraries(taylor_par PUBLIC TBB::tbb
     target_compile_options(taylor_par PRIVATE -std=c++1z)
 endif()
