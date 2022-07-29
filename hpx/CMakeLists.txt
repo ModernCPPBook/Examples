@@ -8,3 +8,6 @@ add_test(NAME "HPX Taylor" COMMAND taylor_hpx 100 0.5)
 
 add_hpx_executable(parallel_for SOURCES parallel_for.cpp)
 add_test(NAME "HPX Parallel for" COMMAND parallel_for)
+
+add_hpx_executable(parallel_for_async SOURCES parallel_for_async.cpp)
+add_test(NAME "HPX Parallel for async" COMMAND parallel_for_async)

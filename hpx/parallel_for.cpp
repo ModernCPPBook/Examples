@@ -1,18 +1,14 @@
+#include <array>
 #include <cmath>
 #include <cstdlib>
-#include <array>
-
-#include <hpx/hpx_main.hpp>
 #include <hpx/algorithms.hpp>
+#include <hpx/hpx_main.hpp>
 
 int main(int args, char** argv) {
- 
-  std::array<int,100000> a;
+  std::array<int, 100000> a;
 
-  hpx::for_loop(hpx::execution::par,0, a.size(), [&](size_t i) {
-
-          a[i] = i * i ;
-
+  hpx::for_loop(hpx::execution::par, 0, a.size(), [&](size_t i) {
+    a[i] = i * i;
   });
 
   return EXIT_SUCCESS;
