@@ -10,19 +10,24 @@ project(Examples
 cmake_minimum_required(VERSION 3.19)
 
 SET(WITH_PAR_ALG OFF CACHE BOOL "Build parallel algorithm example")
+SET(WITH_HPX OFF CACHE BOOL "Build HPX example")
 
 
 include(CheckCXXCompilerFlag)
 
 check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
 
-if($WITH_PAR_ALG)
+if(${WITH_PAR_ALG})
     find_package(TBB REQUIRED)
     add_subdirectory(parallel_algorithm)
 endif()
 
+if(${WITH_HPX})
+    find_package(HPX REQUIRED)
+    add_subdirectory(hpx)
+endif()
 
-if(HAVE_FLAG_STD_CXX20)
+if(${HAVE_FLAG_STD_CXX20})
 
     set(CMAKE_CXX_STANDARD 20)
 
@@ -30,7 +35,7 @@ else()
 
     check_cxx_compiler_flag(-std=c++17 HAVE_FLAG_STD_CXX17)
     
-    if(HAVE_FLAG_STD_CXX17)
+    if(${HAVE_FLAG_STD_CXX17})
 
         set(CMAKE_CXX_STANDARD 17)
     else()

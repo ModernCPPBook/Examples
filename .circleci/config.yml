@@ -9,5 +9,5 @@ jobs:
       - run: cmake -S . -B build
       - run: cd build && make -j 2
       - run: rm -rf build
-      - run: export CXX=clang++ && cmake -S . -B build
+      - run: export CXX=clang++ && cmake -DWITH_PAR_ALG=ON -S . -B build
       - run: cd build && make -j 2
