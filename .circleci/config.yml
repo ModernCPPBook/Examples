@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run: mkdir build
-      - run: cmake -S . -B build
+      - run: cmake -DWITH_PAR_ALG=ON -S . -B build
       - run: cd build && make -j 2
       - run: rm -rf build
-      - run: export CXX=clang++ && cmake -DWITH_PAR_ALG=ON -S . -B build
+      - run: export CXX=clang++ && cmake -DWITH_PAR_ALG=OFF -S . -B build
       - run: cd build && make -j 2
