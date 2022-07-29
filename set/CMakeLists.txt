@@ -4,8 +4,14 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 add_executable(serial serial.cpp)
+add_test(NAME "Set: Serial Mandelbrot" COMMAND serial mandelbrot) 
+add_test(NAME "Set: Serial Julia" COMMAND serial julia) 
+
 add_executable(thread_parallel thread_parallel.cpp)
+add_test(NAME "Set: Thread Mandelbrot" COMMAND thread_parallel mandelbrot) 
+
 add_executable(future_parallel future_parallel.cpp)
+add_test(NAME "Set: Future Mandelbrot" COMMAND future_parallel mandelbrot) 
 
 target_include_directories(serial PUBLIC "../util/")
 target_include_directories(thread_parallel PUBLIC "../util/")
