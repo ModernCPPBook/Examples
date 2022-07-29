@@ -6,11 +6,11 @@ jobs:
     steps:
       - checkout
       - run: mkdir build
-      - run: cmake -DWITH_PAR_ALG=ON -S . -B build
+      - run: cmake -DWITH_PAR_ALG=ON -DWITH_HPX=ON -S . -B build
       - run: cd build && make -j 2
       - run: cd build && ctest
       - run: rm -rf build
-      - run: export CXX=clang++ && cmake -DWITH_PAR_ALG=OFF -S . -B build
+      - run: export CXX=clang++ && cmake -DWITH_PAR_ALG=OFF -DWITH_HPX=OFF -S . -B build
       - run: cd build && make -j 2
       - run: cd build && ctest
       - run: rm -rf build
