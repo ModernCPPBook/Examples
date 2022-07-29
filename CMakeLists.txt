@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.19)
 SET(WITH_PAR_ALG OFF CACHE BOOL "Build parallel algorithm example")
 SET(WITH_HPX OFF CACHE BOOL "Build HPX example")
 
-
+include(CTest)
 include(CheckCXXCompilerFlag)
 
 check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
