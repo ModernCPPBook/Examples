@@ -10,32 +10,32 @@ int main(int argc, char* argv[]) {
 
   std::vector<double> vec(size);
   std::list<double> list(size);
-  std::cout << size << ",";
+  std::cout << size << " ";
 
   auto start = std::chrono::high_resolution_clock::now();
   std::fill(vec.begin(), vec.end(), 1);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration =
       std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   start = std::chrono::high_resolution_clock::now();
   std::fill(list.begin(), list.end(), 1);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   start = std::chrono::high_resolution_clock::now();
   vec.push_back(1);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   start = std::chrono::high_resolution_clock::now();
   list.push_back(1);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   std::random_device dev;
   std::mt19937 rng(dev());
@@ -47,13 +47,13 @@ int main(int argc, char* argv[]) {
   vec.insert(vec.begin(), index, 1);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   start = std::chrono::high_resolution_clock::now();
   list.insert(list.begin(), index, 1);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   index = dist(rng);
 
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
   vec.erase(vec.begin() + index, vec.begin() + index + 1);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   auto begin = list.begin();
   auto end = list.begin();
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
   list.erase(begin, end);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   index = dist(rng);
 
@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
   auto result = vec[index];
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-  std::cout << duration.count() << ",";
+  std::cout << duration.count() << " ";
 
   start = std::chrono::high_resolution_clock::now();
   begin = list.begin();
