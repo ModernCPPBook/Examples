@@ -17,7 +17,7 @@ typedef std::complex<double> complex;
 
 // Definiton of constants
 const double pi = M_PI;
-const size_t max_iteration = 80;
+const size_t max_iterations = 80;
 const size_t size_x = 12 * 3840;
 const size_t size_y = 12 * 2160;
 const int max_color = 256;

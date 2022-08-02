@@ -13,19 +13,6 @@
 #include "config.h"
 #include "kernel.h"
 
-// Function to comoute the Mandelbrot set for a pixel
-size_t compute_pixel(complex c) {
-  // std::complex<double> z(0, 0);
-  for (size_t i = 0; i < max_iteration; i++) {
-    if (type == "mandelbrot")
-      return mandelbrot(c);
-    else
-      return julia(c);
-  }
-
-  return 0;
-}
-
 int main(int argc, char* argv[]) {
   type = argv[1];
 

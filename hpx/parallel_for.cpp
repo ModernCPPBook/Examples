@@ -1,7 +1,7 @@
 #include <array>
 #include <cmath>
 #include <cstdlib>
-#include <hpx/algorithms.hpp>
+#include <hpx/parallel/algorithm.hpp>
 #include <hpx/hpx_main.hpp>
 
 int main(int args, char** argv) {

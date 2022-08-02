@@ -1,6 +1,6 @@
 #include <cmath>
 #include <cstdlib>
-#include <hpx/algorithms.hpp>
+#include <hpx/parallel/algorithm.hpp>
 #include <hpx/hpx_main.hpp>
 #include <hpx/numeric.hpp>
 #include <iostream>
