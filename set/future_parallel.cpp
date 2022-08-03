@@ -14,7 +14,6 @@
 #include "kernel.h"
 
 int main(int argc, char* argv[]) {
-  type = argv[1];
 
   // Defintion of utility
   PBM pbm = PBM(size_x, size_y);

@@ -15,14 +15,7 @@
 #include "kernel.h"
 
 int main(int argc, char* argv[]) {
-  if (argc != 3) {
-    std::cerr << "Usage: " << argv[0] << " type nthreads" << std::endl;
-    return 0;
-  }
-
-  type = argv[1];
-
-  int nthreads = std::stod(argv[2]);
+  const size_t nthreads = get_size_t("NUM_THREADS",3);
 
   // Defintion of utility
   PBM pbm = PBM(size_x, size_y);
@@ -31,7 +24,7 @@ int main(int argc, char* argv[]) {
   std::iota(index.begin(), index.end(), 0);
 
   std::vector<std::thread> threads;
-  for (int n = 0; n < nthreads; n++) {
+  for (size_t n = 0; n < nthreads; n++) {
     const int delx = index.size() / nthreads;
     // split into equal chunks
     const int nlo = n * delx;

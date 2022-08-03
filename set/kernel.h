@@ -10,7 +10,7 @@
 #include "config.h"
 
 // Kernel to compute the Mandelbrot set
-size_t mandelbrot(complex c) {
+inline size_t mandelbrot(complex c) {
   std::complex<double> z(0, 0);
   for (size_t i = 0; i < max_iterations; i++) {
     z = z * z + c;
@@ -21,11 +21,29 @@ size_t mandelbrot(complex c) {
   return 0;
 }
 
+inline double get_double(const char *varname,double defval) {
+    const char *strval = getenv(varname);
+    double retval;
+    if(strval == nullptr) {
+        retval = defval;
+    } else {
+        std::stringstream ss(strval);
+        ss >> retval;
+    }
+    std::cout << "Using " << varname << "=" << retval << std::endl;
+    return retval;
+}
+
+inline std::complex<double> get_const() {
+  return {get_double("C_REAL",-.4),get_double("C_IMAG",.6)};
+}
+
+const std::complex<double> julia_const = get_const();
+
 // Kernel to compute the Julia set
-size_t julia(complex z) {
-  std::complex<double> c(-0.4,0.6);
+inline size_t julia(complex z) {
   for (size_t i = 0; i < max_iterations; i++) {
-    z = z * z + c;
+    z = z * z + julia_const;
     if (abs(z) > 2.0) {
       return i;
     }
@@ -34,7 +52,7 @@ size_t julia(complex z) {
 }
 
 // Function to comoute the Mandelbrot set for a pixel
-size_t compute_pixel(complex c) {
+inline size_t compute_pixel(complex c) {
   // std::complex<double> z(0, 0);
   for (size_t i = 0; i < max_iterations; i++) {
     if (type == "mandelbrot")
