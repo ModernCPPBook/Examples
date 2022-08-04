@@ -14,6 +14,8 @@
 int main(int argc, char* argv[]) {
     type = argv[1];
 
+    //std::cout << hpx::get_os_thread_count() << std::endl;
+    //std::cout << hpx::threads::hardware_concurrency() << std::endl;
     // Defintion of utility
     PBM pbm = PBM(size_x, size_y);
 
@@ -22,6 +24,7 @@ int main(int argc, char* argv[]) {
 
   auto start = std::chrono::high_resolution_clock::now();
     hpx::for_loop(hpx::execution::par,0,size_x, [&pbm](size_t i) {
+            
             complex c =
             complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 

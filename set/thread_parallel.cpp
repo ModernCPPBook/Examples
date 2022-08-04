@@ -23,6 +23,9 @@ int main(int argc, char* argv[]) {
   std::vector<size_t> index(size_x);
   std::iota(index.begin(), index.end(), 0);
 
+     auto start = std::chrono::high_resolution_clock::now();
+
+
   std::vector<std::thread> threads;
   for (size_t n = 0; n < nthreads; n++) {
     const int delx = index.size() / nthreads;
@@ -49,8 +52,13 @@ int main(int argc, char* argv[]) {
   }
   for (std::thread& t : threads) t.join();
 
+  auto stop = std::chrono::high_resolution_clock::now();
+    auto  duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+    std::cout << duration.count() << std::endl;
+
+
   // Save the image
-  pbm.save("image_threads_" + type + ".pbm");
+  //pbm.save("image_threads_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }

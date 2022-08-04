@@ -21,6 +21,10 @@ int main(int argc, char* argv[]) {
   std::iota(index.begin(), index.end(), 0);
 
   std::vector<std::future<void>> futures;
+
+    auto start = std::chrono::high_resolution_clock::now();
+
+
   std::for_each(index.begin(), index.end(), [&pbm, &futures](size_t i) {
     std::future<void> f = std::async(std::launch::async, [&pbm, i]() {
       complex c =
@@ -39,9 +43,14 @@ int main(int argc, char* argv[]) {
     futures.push_back(std::move(f));
   });
   for (auto&& f : futures) f.wait();
+  
+     auto stop = std::chrono::high_resolution_clock::now();
+    auto  duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+    std::cout << duration.count() << std::endl;
+
 
   // Save the image
-  pbm.save("image_future_parallel_" + type + ".pbm");
+  //pbm.save("image_future_parallel_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }
