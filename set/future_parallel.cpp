@@ -13,20 +13,13 @@
 #include "config.h"
 #include "kernel.h"
 
-int main(int argc, char* argv[]) {
-  // Defintion of utility
-  PBM pbm = PBM(size_x, size_y);
-
-  std::vector<int> index(size_x);
-  std::iota(index.begin(), index.end(), 0);
-
-  std::vector<std::future<void>> futures;
-
-    auto start = std::chrono::high_resolution_clock::now();
+void launch(size_t begin, size_t end, PBM* pbm){
 
 
-  std::for_each(index.begin(), index.end(), [&pbm, &futures](size_t i) {
-    std::future<void> f = std::async(std::launch::async, [&pbm, i]() {
+for (size_t i = begin ; i < end ; i++)
+
+{
+
       complex c =
           complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
@@ -36,21 +29,46 @@ int main(int argc, char* argv[]) {
         // Convert the smoothened value to RGB color space
         std::tuple<size_t, size_t, size_t> color = get_rgb(value);
         // Set the pixel color
-        pbm(i, j) = make_color(std::get<0>(color), std::get<1>(color),
+        (*pbm)(i, j) = make_color(std::get<0>(color), std::get<1>(color),
                                std::get<2>(color));
       }
-    });
+}
+
+}
+
+int main(int argc, char* argv[]) {
+  type = argv[1];
+  size_t partitions = std::stoi(argv[2]);
+
+  // Defintion of utility
+  PBM pbm = PBM(size_x, size_y);
+
+  size_t size = std::round( size_x / partitions);
+
+
+  std::vector<std::future<void>> futures;
+
+    auto start = std::chrono::high_resolution_clock::now();
+
+    for( size_t i = 0 ; i < partitions ; i++)
+    {
+      size_t start = i * size;
+      size_t end = (i+1) * size;
+      if ( i == partitions -1 )
+          end = size_x;
+      auto f = std::async(launch,start,end,&pbm);
+
     futures.push_back(std::move(f));
-  });
+    }
   for (auto&& f : futures) f.wait();
   
      auto stop = std::chrono::high_resolution_clock::now();
-    auto  duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+    auto  duration = std::chrono::duration_cast<std::chrono::seconds>(stop - start);
     std::cout << duration.count() << std::endl;
 
 
   // Save the image
-  //pbm.save("image_future_parallel_" + type + ".pbm");
+  pbm.save("image_future_parallel_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }

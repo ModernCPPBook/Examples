@@ -3,9 +3,9 @@
 for i in {1..40}
 do
 data=""
-for j in {1..100}
+for j in {1..10}
 do
-    result=$(../build/set/algorithm_parallel Mandelbrot --hpx:threads=${i}) 
+    result=$(../build/set/algorithm_parallel Mandelbrot --hpx:threads=${i} -Ihpx.stacks.use_guard_pages=0) 
     data="data $result"
 done
 list=(`for n in $data; do printf "%015.06f\n" $n; done | sort -n`);
