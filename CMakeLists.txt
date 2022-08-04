@@ -19,7 +19,6 @@ check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
 
 if(${WITH_PAR_ALG})
     find_package(TBB REQUIRED)
-    add_subdirectory(parallel_algorithm)
 endif()
 
 if(${WITH_HPX})
@@ -46,3 +45,4 @@ endif()
 add_subdirectory(appendix)
 add_subdirectory(sl)
 add_subdirectory(set)
+add_subdirectory(parallel)
