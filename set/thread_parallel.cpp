@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 
 
   // Save the image
-  //pbm.save("image_threads_" + type + ".pbm");
+  pbm.save("image_threads_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }
