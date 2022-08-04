@@ -17,5 +17,7 @@ endif()
 endif()
 
 add_executable(taylor_thread taylor_thread.cpp)
-add_test(NAME "Parallel: Taylor thread" COMMAND taylor_thread 100 0.5)
+target_link_libraries(taylor_thread PRIVATE Threads::Threads)
+
+add_test(NAME "Parallel: Taylor thread" COMMAND taylor_thread 100 0.5 3)
 

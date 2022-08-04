@@ -8,10 +8,10 @@ add_test(NAME "Set: Serial Mandelbrot" COMMAND serial mandelbrot)
 add_test(NAME "Set: Serial Julia" COMMAND serial julia) 
 
 add_executable(thread_parallel thread_parallel.cpp)
-add_test(NAME "Set: Thread Mandelbrot" COMMAND thread_parallel mandelbrot) 
+add_test(NAME "Set: Thread Mandelbrot" COMMAND thread_parallel 2) 
 
 add_executable(future_parallel future_parallel.cpp)
-add_test(NAME "Set: Future Mandelbrot" COMMAND future_parallel mandelbrot) 
+add_test(NAME "Set: Future Mandelbrot" COMMAND future_parallel 2) 
 
 if(${WITH_HPX})
     add_hpx_executable(algorithm_parallel SOURCES algorithm_parallel.cpp)

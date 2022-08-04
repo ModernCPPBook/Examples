@@ -4,24 +4,17 @@
 #include <iostream>
 #include <numeric>
 #include <string>
-<<<<<<< HEAD
 #include <thread>
-=======
->>>>>>> 3eb5bc4 (Update)
 #include <vector>
 
 int main(int args, char** argv) {
   int n = std::stoi(argv[1]);
   double x = std::stod(argv[2]);
-<<<<<<< HEAD
   size_t amount = std::stoi(argv[3]);
-=======
->>>>>>> 3eb5bc4 (Update)
 
   std::vector<double> parts(n);
   std::iota(parts.begin(), parts.end(), 1);
 
-<<<<<<< HEAD
   size_t partitions = std::round(n / amount);
 
   std::vector<std::thread> threads;
@@ -40,11 +33,6 @@ int main(int args, char** argv) {
   }
 
   for (std::thread& t : threads) t.join();
-=======
-  std::for_each(parts.begin(), parts.end(), [x](double& e) {
-    e = std::pow(-1.0, e + 1) * std::pow(x, e) / (e);
-  });
->>>>>>> 3eb5bc4 (Update)
 
   double result = std::accumulate(parts.begin(), parts.end(), 0.);
 

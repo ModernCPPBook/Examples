@@ -37,8 +37,7 @@ for (size_t i = begin ; i < end ; i++)
 }
 
 int main(int argc, char* argv[]) {
-  type = argv[1];
-  size_t partitions = std::stoi(argv[2]);
+  size_t partitions = get_size_t("NUM_THREADS", 3);
 
   // Defintion of utility
   PBM pbm = PBM(size_x, size_y);
