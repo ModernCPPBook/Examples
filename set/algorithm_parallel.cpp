@@ -12,21 +12,19 @@
 #include "kernel.h"
 
 int main(int argc, char* argv[]) {
-    type = argv[1];
+  type = argv[1];
 
-    //std::cout << hpx::get_os_thread_count() << std::endl;
-    //std::cout << hpx::threads::hardware_concurrency() << std::endl;
-    // Defintion of utility
-    PBM pbm = PBM(size_x, size_y);
-
+  // std::cout << hpx::get_os_thread_count() << std::endl;
+  // std::cout << hpx::threads::hardware_concurrency() << std::endl;
+  //  Defintion of utility
+  PBM pbm = PBM(size_x, size_y);
 
   std::vector<size_t> index(size_x);
 
   auto start = std::chrono::high_resolution_clock::now();
-    hpx::for_loop(hpx::execution::par,0,size_x, [&pbm](size_t i) {
-            
-            complex c =
-            complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
+  hpx::for_loop(hpx::execution::par, 0, size_x, [&pbm](size_t i) {
+    complex c =
+        complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
     for (size_t j = 0; j < size_y; j++) {
       // Get the number of iterations
@@ -38,12 +36,13 @@ int main(int argc, char* argv[]) {
                              std::get<2>(color));
     }
   });
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto  duration = std::chrono::duration_cast<std::chrono::seconds>(stop - start);
-    std::cout << duration.count() << std::endl;
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration =
+      std::chrono::duration_cast<std::chrono::seconds>(stop - start);
+  std::cout << duration.count() << std::endl;
 
-    // Save the image
-    pbm.save("image_parallel_" + type + ".pbm");
+  // Save the image
+  pbm.save("image_parallel_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }
