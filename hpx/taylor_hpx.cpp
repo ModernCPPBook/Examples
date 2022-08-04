@@ -1,8 +1,8 @@
 #include <cmath>
 #include <cstdlib>
-#include <hpx/parallel/algorithm.hpp>
 #include <hpx/hpx_main.hpp>
 #include <hpx/numeric.hpp>
+#include <hpx/parallel/algorithm.hpp>
 #include <iostream>
 #include <string>
 #include <vector>

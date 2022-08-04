@@ -15,7 +15,7 @@
 #include "kernel.h"
 
 int main(int argc, char* argv[]) {
-  const size_t nthreads = get_size_t("NUM_THREADS",3);
+  const size_t nthreads = get_size_t("NUM_THREADS", 3);
 
   // Defintion of utility
   PBM pbm = PBM(size_x, size_y);
