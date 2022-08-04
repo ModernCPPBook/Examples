@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export MAX_ITER=240
+export SIZE_X=384000
+export SIZE_Y=216000   
+
 for i in {1..40}
 do
 data=""

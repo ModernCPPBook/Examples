@@ -1,8 +1,13 @@
 #!/bin/bash
 
+export MAX_ITER=240
+export SIZE_X=384000
+export SIZE_Y=216000
+
 for i in {1..40}
 do
 data=""
+export NUM_THREADS=${i}
 for j in {1..10}
 do
 result=$(../build/set/future_parallel Mandelbrot ${i})
