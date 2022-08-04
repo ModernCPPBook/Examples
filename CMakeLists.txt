@@ -42,6 +42,9 @@ else()
     endif()
 endif()
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 add_subdirectory(appendix)
 add_subdirectory(sl)
 add_subdirectory(set)

@@ -25,7 +25,5 @@ if(${WITH_HPX})
     target_include_directories(algorithm_parallel PUBLIC "../util/")
 endif()
 
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
 target_link_libraries(thread_parallel PRIVATE Threads::Threads)
 target_link_libraries(future_parallel PRIVATE Threads::Threads)
