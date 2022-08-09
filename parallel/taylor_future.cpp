@@ -1,10 +1,10 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include <future>
 #include <iostream>
 #include <numeric>
 #include <string>
-#include <future>
 #include <vector>
 
 int main(int args, char** argv) {
@@ -23,15 +23,12 @@ int main(int args, char** argv) {
     size_t end = (i + 1) * partitions;
     if (i == amount - 1) end = n;
 
-    
-
-    std::future<double> f = std::async([begin, end, x, &parts]()->double {
+    std::future<double> f = std::async([begin, end, x, &parts]() -> double {
       std::for_each(parts.begin() + begin, parts.begin() + end, [x](double& e) {
         e = std::pow(-1.0, e + 1) * std::pow(x, e) / (e);
       });
-	
-	return std::accumulate(parts.begin() + begin, parts.begin() + end, 0.);
 
+      return std::accumulate(parts.begin() + begin, parts.begin() + end, 0.);
     });
 
     futures.push_back(std::move(f));
