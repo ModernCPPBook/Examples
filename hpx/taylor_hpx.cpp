@@ -21,8 +21,7 @@ int main(int args, char** argv) {
   double result =
       hpx::reduce(hpx::execution::par, parts.begin(), parts.end(), 0.);
 
-  std::cout << "Difference of Taylor and C++ result "
-            << result - std::log1p(x) << " after " << n << " iterations."
-            << std::endl;
+  std::cout << "Difference of Taylor and C++ result " << result - std::log1p(x)
+            << " after " << n << " iterations." << std::endl;
   return EXIT_SUCCESS;
 }
