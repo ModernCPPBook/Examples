@@ -64,7 +64,7 @@ class PBM {
   std::vector<int>& row(int j) { return values.at(j); }
 
   // save to a file
-  void save(const std::string fname) {
+  void save(const std::string &fname) {
     std::ofstream f(fname);
     f << "P3\n";
     f << w << " " << h << "\n";

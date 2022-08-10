@@ -8,7 +8,7 @@ int main(void) {
   // Accessing the iterator to the first element
   std::list<int>::iterator it = std::begin(values);
 
-  for (; it != std::end(values); it++)
+  for (; it != std::end(values); ++it)
     // Accessing the element using the dereference operator *
     std::cout << *it << std::endl;
 
