@@ -69,7 +69,6 @@ class PBM {
     f << "P3\n";
     f << w << " " << h << "\n";
     f << "255\n";
-    const int mv = 256;
     for (int j = 0; j < h; j++) {
       auto& row = values.at(j);
       for (int i = 0; i < w; i++) {
