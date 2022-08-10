@@ -46,7 +46,7 @@ int main(int args, char** argv) {
       .get();
 
   std::cout << "Difference of Taylor and C++ result "
-            << result - std::log(1 + x) << " after " << n << " iterations."
+            << result - std::log1p(x) << " after " << n << " iterations."
             << std::endl;
   return EXIT_SUCCESS;
 }
