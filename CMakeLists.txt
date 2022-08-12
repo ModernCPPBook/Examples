@@ -9,8 +9,8 @@ project(Examples
 
 cmake_minimum_required(VERSION 3.19)
 
-SET(WITH_PAR_ALG OFF CACHE BOOL "Build parallel algorithm example")
-SET(WITH_HPX OFF CACHE BOOL "Build HPX example")
+SET(WITH_PAR_ALG OFF CACHE BOOL "Build parallel algorithm examples")
+SET(WITH_HPX OFF CACHE BOOL "Build HPX examples")
 
 include(CTest)
 include(CheckCXXCompilerFlag)
