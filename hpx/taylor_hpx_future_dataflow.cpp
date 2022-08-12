@@ -37,10 +37,12 @@ int main(int args, char** argv) {
 
   double result = 0;
 
-  hpx::dataflow(hpx::launch::sync,[&](auto f) {
-        
+  hpx::dataflow(
+      hpx::launch::sync,
+      [&](auto f) {
         for (size_t i = 0; i < futures.size(); i++) result += futures[i].get();
-      },futures);
+      },
+      futures);
 
   std::cout << "Difference of Taylor and C++ result " << result - std::log1p(x)
             << " after " << n << " iterations." << std::endl;
