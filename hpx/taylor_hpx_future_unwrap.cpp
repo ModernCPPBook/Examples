@@ -35,14 +35,10 @@ int main(int args, char** argv) {
     futures.push_back(std::move(f));
   }
 
-   
   double result = 0;
-  auto fp = hpx::unwrapping([&](std::vector<hpx::future<double>> f)   {
-           
-           for (size_t i = 0; i < f.size(); i++) result += f[i].get();
-        });
-
-
+  auto fp = hpx::unwrapping([&](std::vector<hpx::future<double>> f) {
+    for (size_t i = 0; i < f.size(); i++) result += f[i].get();
+  });
 
   hpx::when_all(futures).then(fp).get();
 
