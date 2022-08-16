@@ -12,10 +12,7 @@
 #include "kernel.h"
 
 int main(int argc, char* argv[]) {
-  type = argv[1];
 
-  // std::cout << hpx::get_os_thread_count() << std::endl;
-  // std::cout << hpx::threads::hardware_concurrency() << std::endl;
   //  Defintion of utility
   PBM pbm = PBM(size_x, size_y);
 
@@ -42,7 +39,7 @@ int main(int argc, char* argv[]) {
   std::cout << duration.count() << std::endl;
 
   // Save the image
-  pbm.save("image_parallel_" + type + ".pbm");
+  //pbm.save("image_parallel_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }

@@ -11,7 +11,8 @@ export NUM_THREADS=${i}
 for j in {1..10}
 do
 result=$(../build/set/future_parallel Mandelbrot ${i})
-data="$data $result"
+array=($result)
+data="$data ${array[-1]}"
 done
 list=(`for n in $data; do printf "%015.06f\n" $n; done | sort -n`); 
 echo "$i,${list[${#list[*]}/2]},${list[0]},${list[${#list[*]}-1]}"

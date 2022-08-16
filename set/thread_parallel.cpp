@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
   std::cout << duration.count() << std::endl;
 
   // Save the image
-  pbm.save("image_threads_" + type + ".pbm");
+  //pbm.save("image_threads_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }

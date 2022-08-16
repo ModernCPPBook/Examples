@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
   std::cout << duration.count() << std::endl;
 
   // Save the image
-  pbm.save("image_future_parallel_" + type + ".pbm");
+  //pbm.save("image_future_parallel_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }
