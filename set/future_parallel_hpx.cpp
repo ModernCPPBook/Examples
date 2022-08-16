@@ -33,7 +33,7 @@ void launch(size_t begin, size_t end, PBM* pbm) {
 
 int main(int argc, char* argv[]) {
   size_t partitions = get_size_t("NUM_THREADS", 3);
- size_t output = get_size_t("OUTPUT", 1);
+  size_t output = get_size_t("OUTPUT", 1);
 
   // Defintion of utility
   PBM pbm = PBM(size_x, size_y);

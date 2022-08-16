@@ -29,7 +29,8 @@ int main(int args, char** argv) {
         e = std::pow(-1.0, e + 1) * std::pow(x, e) / (e);
       });
 
-      return hpx::reduce(parts.begin() + begin, parts.begin() + end, 0.);
+      return hpx::reduce(hpx::execution::seq,parts.begin() + begin, parts.begin() + end, 0.);
+      
     });
 
     futures.push_back(std::move(f));
