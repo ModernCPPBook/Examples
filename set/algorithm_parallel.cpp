@@ -12,6 +12,7 @@
 #include "kernel.h"
 
 int main(int argc, char* argv[]) {
+ size_t output = get_size_t("OUTPUT", 1);
 
   //  Defintion of utility
   PBM pbm = PBM(size_x, size_y);
@@ -39,7 +40,7 @@ int main(int argc, char* argv[]) {
   std::cout << duration.count() << std::endl;
 
   // Save the image
-  //pbm.save("image_parallel_" + type + ".pbm");
+  if(output ==1)pbm.save("image_parallel_" + type + ".pbm");
 
   return EXIT_SUCCESS;
 }
