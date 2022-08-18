@@ -8,8 +8,7 @@
 
 module load gcc boost
 
-#./run_benchmark_loop.sh > data_loop.csv
-#./run_benchmark_thread.sh > data_thread.csv
-#./run_benchmark_future.sh > data_future.csv
+./run_benchmark_loop.sh > data_loop.csv
+./run_benchmark_thread.sh > data_thread.csv
+./run_benchmark_future.sh > data_future.csv
 ./run_benchmark_future_hpx.sh > data_future_hpx.csv
-

@@ -1,8 +1,9 @@
 #!/bin/bash
 
-export MAX_ITER=240
-export SIZE_X=384000
-export SIZE_Y=216000   
+export MAX_ITER=80
+export SIZE_X=39860
+export SIZE_Y=21600
+export OUTPUT=0
 
 for i in {1..40}
 do
