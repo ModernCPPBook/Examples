@@ -3,10 +3,10 @@
 //  SPDX-License-Identifier: BSL-1.0
 //  Distributed under the Boost Software License, Version 1.0. (See accompanying
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-#include <hpx/hpx_main.hpp>
-#include <iostream>
-#include <hpx/numeric.hpp>
 #include <hpx/future.hpp>
+#include <hpx/hpx_main.hpp>
+#include <hpx/numeric.hpp>
+#include <iostream>
 #include <pbm.hpp>
 
 #include "config.h"
@@ -53,19 +53,17 @@ int main(int argc, char* argv[]) {
     futures.push_back(std::move(f));
   }
 
-  hpx::when_all(futures).then([&](auto&& f){
+  hpx::when_all(futures)
+      .then([&](auto&& f) {
+        // Save the image
+        if (output == 1) pbm.save("image_future_parallel_" + type + ".pbm");
+      })
+      .get();
 
-  // Save the image
-    if (output==1) 
-
-   pbm.save("image_future_parallel_" + type + ".pbm");
-          }).get();
-
-      auto stop = std::chrono::high_resolution_clock::now();
+  auto stop = std::chrono::high_resolution_clock::now();
   auto duration =
       std::chrono::duration_cast<std::chrono::seconds>(stop - start);
   std::cout << duration.count() << std::endl;
-
 
   return EXIT_SUCCESS;
 }

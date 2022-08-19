@@ -21,7 +21,7 @@ add_test(NAME "HPX Parallel for" COMMAND parallel_for)
 add_hpx_executable(parallel_for_async SOURCES parallel_for_async.cpp)
 add_test(NAME "HPX Parallel for async" COMMAND parallel_for_async)
 
-
+if($HPX_HAVE_DATAPAR)
 add_hpx_executable(parallel_reduce_simd SOURCES parallel_reduce_simd.cpp)
 add_test(NAME "HPX Parallel reduce SIMD" COMMAND parallel_reduce_simd)
-
+endif()
