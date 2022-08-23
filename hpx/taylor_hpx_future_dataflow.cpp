@@ -29,8 +29,8 @@ int main(int args, char** argv) {
         e = std::pow(-1.0, e + 1) * std::pow(x, e) / (e);
       });
 
-      return hpx::reduce(hpx::execution::par,parts.begin() + begin , parts.begin() + end, 0.);
-      
+      return hpx::reduce(hpx::execution::par, parts.begin() + begin,
+                         parts.begin() + end, 0.);
     });
 
     futures.push_back(std::move(f));
@@ -43,7 +43,8 @@ int main(int args, char** argv) {
       [&](auto&& futures) {
         for (size_t i = 0; i < futures.size(); i++) result += futures[i].get();
       },
-      std::move(futures)).get();
+      std::move(futures))
+      .get();
 
   std::cout << "Difference of Taylor and C++ result " << result - std::log1p(x)
             << " after " << n << " iterations." << std::endl;
