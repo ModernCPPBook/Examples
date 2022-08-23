@@ -29,13 +29,8 @@ int main(int args, char** argv) {
         e = std::pow(-1.0, e + 1) * std::pow(x, e) / (e);
       });
 
-<<<<<<< HEAD
-      return hpx::reduce(hpx::execution::seq, parts.begin() + begin,
-                         parts.begin() + end, 0.);
-=======
-      return hpx::reduce(hpx::execution::seq,parts.begin() + begin, parts.end(), 0.);
+      return hpx::reduce(hpx::execution::par,parts.begin(), parts.end(), 0.);
       
->>>>>>> 5224d59 (Fix segfault in dataflow)
     });
 
     futures.push_back(std::move(f));
