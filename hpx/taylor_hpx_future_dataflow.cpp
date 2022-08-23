@@ -29,8 +29,13 @@ int main(int args, char** argv) {
         e = std::pow(-1.0, e + 1) * std::pow(x, e) / (e);
       });
 
+<<<<<<< HEAD
       return hpx::reduce(hpx::execution::seq, parts.begin() + begin,
                          parts.begin() + end, 0.);
+=======
+      return hpx::reduce(hpx::execution::seq,parts.begin() + begin, parts.end(), 0.);
+      
+>>>>>>> 5224d59 (Fix segfault in dataflow)
     });
 
     futures.push_back(std::move(f));
@@ -40,10 +45,10 @@ int main(int args, char** argv) {
 
   hpx::dataflow(
       hpx::launch::sync,
-      [&](auto f) {
+      [&](auto&& futures) {
         for (size_t i = 0; i < futures.size(); i++) result += futures[i].get();
       },
-      futures);
+      std::move(futures)).get();
 
   std::cout << "Difference of Taylor and C++ result " << result - std::log1p(x)
             << " after " << n << " iterations." << std::endl;
