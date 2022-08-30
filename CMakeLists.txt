@@ -12,6 +12,7 @@ cmake_minimum_required(VERSION 3.19)
 SET(WITH_PAR_ALG OFF CACHE BOOL "Build parallel algorithm examples")
 SET(WITH_HPX OFF CACHE BOOL "Build HPX examples")
 SET(WITH_SMID OFF CACHE BOOL "Build HPX example using SIMD")
+SET(WITH_COROUTINES OFF CACHE BOOL "Build HPX example using coroutines")
 
 include(CTest)
 include(CheckCXXCompilerFlag)
