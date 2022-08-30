@@ -22,11 +22,11 @@ add_hpx_executable(parallel_for_async SOURCES parallel_for_async.cpp)
 add_test(NAME "HPX Parallel for async" COMMAND parallel_for_async)
 
 if(${WITH_COROUTINES})
-  add_hpx_executable(taylor_hpx_future_coroutine SOURCES taylor_hpx_future_coroutine.cpp)
+  #add_hpx_executable(taylor_hpx_future_coroutine SOURCES taylor_hpx_future_coroutine.cpp)
   add_test(NAME "HPX Taylor future coroutine" COMMAND taylor_hpx_future_coroutine 100 0.5 3)
 endif()
 
 if(${WITH_SIMD})
-add_hpx_executable(parallel_reduce_simd SOURCES parallel_reduce_simd.cpp)
+  add_hpx_executable(parallel_reduce_simd SOURCES parallel_reduce_simd.cpp)
 add_test(NAME "HPX Parallel reduce SIMD" COMMAND parallel_reduce_simd)
 endif()

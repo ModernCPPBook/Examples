@@ -21,12 +21,22 @@ if(${WITH_HPX})
     add_test(NAME "Set: HPX Future Mandelbrot" COMMAND future_parallel_hpx)
 endif()
 
+if(${WITH_COROUTINES})
+    add_hpx_executable(future_parallel_hpx_coroutine SOURCES future_parallel_hpx_coroutine.cpp)
+    add_test(NAME "Set: HPX Future Coroutines Mandelbrot" COMMAND future_parallel_hpx_coroutine)
+endif()
+
 target_include_directories(serial PUBLIC "../util/")
 target_include_directories(thread_parallel PUBLIC "../util/")
 target_include_directories(future_parallel PUBLIC "../util/")
+
 if(${WITH_HPX})
     target_include_directories(algorithm_parallel PUBLIC "../util/")
     target_include_directories(future_parallel_hpx PUBLIC "../util/")
+endif()
+
+if(${WITH_COROUTINES})
+    target_include_directories(future_parallel_hpx_coroutine PUBLIC "../util/")
 endif()
 
 target_link_libraries(thread_parallel PRIVATE Threads::Threads)
