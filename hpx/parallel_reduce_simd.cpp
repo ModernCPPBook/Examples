@@ -13,7 +13,7 @@ int main(int args, char** argv) {
             << std::endl;
 
   std::cout << hpx::reduce(hpx::execution::par_simd, std::begin(a), std::end(a),
-                           0);
+                           0)
             << std::endl;
 
   return EXIT_SUCCESS;
