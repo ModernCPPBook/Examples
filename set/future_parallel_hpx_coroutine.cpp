@@ -31,8 +31,7 @@ void launch(size_t begin, size_t end, PBM* pbm) {
   }
 }
 
-hpx::future<void> run(size_t size, size_t partitions, size_t output, PBM* pbm){
-
+hpx::future<void> run(size_t size, size_t partitions, size_t output, PBM* pbm) {
   std::vector<hpx::future<void>> futures;
 
   for (size_t i = 0; i < partitions; i++) {
@@ -50,8 +49,6 @@ hpx::future<void> run(size_t size, size_t partitions, size_t output, PBM* pbm){
 }
 
 int main(int argc, char* argv[]) {
-
-
   size_t output = get_size_t("OUTPUT", 1);
   size_t partitions = get_size_t("NUM_THREADS", 3);
 
@@ -62,14 +59,14 @@ int main(int argc, char* argv[]) {
 
   auto start = std::chrono::high_resolution_clock::now();
 
-  run(size,partitions,output,&pbm).get();
-  
+  run(size, partitions, output, &pbm).get();
+
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration =
       std::chrono::duration_cast<std::chrono::seconds>(stop - start);
   std::cout << duration.count() << std::endl;
 
-if (output == 1) pbm.save("image_future_parallel_" + type + ".pbm");
-    
+  if (output == 1) pbm.save("image_future_parallel_" + type + ".pbm");
+
   return EXIT_SUCCESS;
 }

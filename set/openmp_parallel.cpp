@@ -4,10 +4,11 @@
 //  Distributed under the Boost Software License, Version 1.0. (See accompanying
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
+#include <chrono>
+
 #include "config.h"
 #include "kernel.h"
 #include "pbm.hpp"
-#include <chrono>
 
 int main(int argc, char* argv[]) {
   size_t output = get_size_t("OUTPUT", 1);
@@ -18,9 +19,9 @@ int main(int argc, char* argv[]) {
   std::vector<size_t> index(size_x);
 
   auto start = std::chrono::high_resolution_clock::now();
-  
-  #pragma omp parallel for
-  for (size_t i = 0 ; i < size_x ; i++){
+
+#pragma omp parallel for
+  for (size_t i = 0; i < size_x; i++) {
     complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
