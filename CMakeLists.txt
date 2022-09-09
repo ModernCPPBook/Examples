@@ -19,6 +19,8 @@ include(CheckCXXCompilerFlag)
 
 check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
 
+find_package(OpenMP)
+
 if(${WITH_PAR_ALG})
     find_package(TBB REQUIRED)
 endif()

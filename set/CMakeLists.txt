@@ -3,6 +3,8 @@
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
+add_executable(openmp_parallel openmp_parallel.cpp)
+
 add_executable(serial serial.cpp)
 add_test(NAME "Set: Serial Mandelbrot" COMMAND serial mandelbrot) 
 add_test(NAME "Set: Serial Julia" COMMAND serial julia) 
@@ -27,8 +29,11 @@ if(${WITH_COROUTINES})
 endif()
 
 target_include_directories(serial PUBLIC "../util/")
+target_include_directories(openmp_parallel PUBLIC "../util/")
 target_include_directories(thread_parallel PUBLIC "../util/")
 target_include_directories(future_parallel PUBLIC "../util/")
+
+target_link_libraries(openmp_parallel PUBLIC OpenMP::OpenMP_CXX)
 
 if(${WITH_HPX})
     target_include_directories(algorithm_parallel PUBLIC "../util/")
