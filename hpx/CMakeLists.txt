@@ -18,6 +18,9 @@ add_test(NAME "HPX Taylor future unwrap" COMMAND taylor_hpx_future_unwrap 100 0.
 add_hpx_executable(parallel_for SOURCES parallel_for.cpp)
 add_test(NAME "HPX Parallel for" COMMAND parallel_for)
 
+add_hpx_executable(parallel_for_chunk SOURCES parallel_for_chunk.cpp)
+add_test(NAME "HPX Parallel fori with chunk size" COMMAND parallel_for_chunk)
+
 add_hpx_executable(parallel_for_async SOURCES parallel_for_async.cpp)
 add_test(NAME "HPX Parallel for async" COMMAND parallel_for_async)
 
