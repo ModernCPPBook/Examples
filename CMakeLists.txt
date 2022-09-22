@@ -13,14 +13,19 @@ SET(WITH_PAR_ALG OFF CACHE BOOL "Build parallel algorithm examples")
 SET(WITH_HPX OFF CACHE BOOL "Build HPX examples")
 SET(WITH_SMID OFF CACHE BOOL "Build HPX example using SIMD")
 SET(WITH_COROUTINES OFF CACHE BOOL "Build HPX example using coroutines")
+SET(WITH_MPI OFF CACHE BOOL "Build MPI example")
 
 include(CTest)
 include(CheckCXXCompilerFlag)
 
 check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
 
+if(${WITH_MPI})
+   find_package(MPI REQUIRED)	
+endif()
+
 if(NOT APPLE)
-find_package(OpenMP REQUIRED)
+    find_package(OpenMP REQUIRED)
 endif()
 
 if(${WITH_PAR_ALG})

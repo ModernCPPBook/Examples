@@ -37,6 +37,11 @@ target_include_directories(serial PUBLIC "../util/")
 target_include_directories(thread_parallel PUBLIC "../util/")
 target_include_directories(future_parallel PUBLIC "../util/")
 
+if(${WITH_MPI})
+   add_executable(mpi mpi.cpp)
+   target_link_libraries(mpi PUBLIC MPI::MPI_CXX)
+   target_include_directories(mpi PUBLIC "../util/")
+endif()
 
 if(${WITH_HPX})
     target_include_directories(algorithm_parallel PUBLIC "../util/")

@@ -16,8 +16,6 @@ int main(int argc, char* argv[]) {
   //  Defintion of utility
   PBM pbm = PBM(size_x, size_y);
 
-  std::vector<size_t> index(size_x);
-
   auto start = std::chrono::high_resolution_clock::now();
 
 #pragma omp parallel for
