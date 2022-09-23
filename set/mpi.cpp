@@ -57,41 +57,35 @@ int main(int argc, char* argv[]) {
               &request);
     MPI_Status status;
     MPI_Wait(&request, &status);
-  }
-  else {
- 
+  } else {
+    for (size_t x = 0; x < size; x++) {
+      for (size_t y = 0; y < size_y; y++) pbm(x, y) = pixels[x * size_y + y];
+    }
 
-  for(size_t x = 0 ; x < size ; x++){
-  
-  for(size_t y = 0 ; y < size_y ; y++)
-     
+    for (size_t i = 1; i < mpi_size; i++)
 
-  pbm(x,y) = pixels[x*size_y+y];
-}
+    {
+      MPI_Request request;
+      MPI_Irecv(&pixels[0], pixels.size(), MPI_INT, i, 0, MPI_COMM_WORLD,
+                &request);
+      MPI_Status status;
+      MPI_Wait(&request, &status);
 
-  for (size_t i = 1 ; i < mpi_size ; i++)
+      for (size_t x = 0; x < size; x++) {
+        for (size_t y = 0; y < size_y; y++)
 
-{       
-	
-	MPI_Request request;
-        MPI_Irecv(&pixels[0], pixels.size(), MPI_INT, i, 0, MPI_COMM_WORLD, &request);
-	MPI_Status status;
-    MPI_Wait(&request, &status);
-
-    for(size_t x = 0 ; x < size ; x++){
-	for (size_t y = 0 ; y < size_y ; y++)
-
-	pbm(i*size+x,y) = pixels[x*size_y+y];
-}
-}
-
+          pbm(i * size + x, y) = pixels[x * size_y + y];
+      }
+    }
   }
 
-  auto stop_time = std::chrono::high_resolution_clock::now();
-  auto duration =
-      std::chrono::duration_cast<std::chrono::seconds>(stop_time - start_time);
-  std::cout << duration.count() << std::endl;
+  if (mpi_rank == 0) {
+    auto stop_time = std::chrono::high_resolution_clock::now();
 
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(
+        stop_time - start_time);
+    std::cout << duration.count() << std::endl;
+  }
   // Save the image
   if (output == 1 && mpi_rank == 0) pbm.save("image_mpi_" + type + ".pbm");
 
