@@ -29,11 +29,11 @@ int main(int argc, char* argv[]) {
 
   size_t size = std::round(size_x / mpi_size);
 
-  PBM pbm = PBM(size, size_y);
-
   size_t start = mpi_rank * size;
   size_t end = (mpi_rank + 1) * size;
   if (mpi_rank == mpi_size - 1) end = size_x;
+
+  std::vector<int> pixels;
 
   for (size_t i = start; i < end; i++) {
     complex c =
@@ -45,9 +45,46 @@ int main(int argc, char* argv[]) {
       // Convert the smoothened value to RGB color space
       std::tuple<size_t, size_t, size_t> color = get_rgb(value);
       // Set the pixel color
-      pbm(i - start, j) = make_color(std::get<0>(color), std::get<1>(color),
-                                     std::get<2>(color));
+      pixels.push_back(make_color(std::get<0>(color), std::get<1>(color),
+                                  std::get<2>(color)));
     }
+  }
+
+  PBM pbm = PBM(size_x, size_y);
+  if (mpi_rank != 0) {
+    MPI_Request request;
+    MPI_Isend(&pixels[0], pixels.size(), MPI_INT, 0, 0, MPI_COMM_WORLD,
+              &request);
+    MPI_Status status;
+    MPI_Wait(&request, &status);
+  }
+  else {
+ 
+
+  for(size_t x = 0 ; x < size ; x++){
+  
+  for(size_t y = 0 ; y < size_y ; y++)
+     
+
+  pbm(x,y) = pixels[x*size_y+y];
+}
+
+  for (size_t i = 1 ; i < mpi_size ; i++)
+
+{       
+	
+	MPI_Request request;
+        MPI_Irecv(&pixels[0], pixels.size(), MPI_INT, i, 0, MPI_COMM_WORLD, &request);
+	MPI_Status status;
+    MPI_Wait(&request, &status);
+
+    for(size_t x = 0 ; x < size ; x++){
+	for (size_t y = 0 ; y < size_y ; y++)
+
+	pbm(i*size+x,y) = pixels[x*size_y+y];
+}
+}
+
   }
 
   auto stop_time = std::chrono::high_resolution_clock::now();
