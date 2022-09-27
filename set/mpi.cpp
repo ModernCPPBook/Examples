@@ -33,8 +33,9 @@ int main(int argc, char* argv[]) {
   size_t end = (mpi_rank + 1) * size;
   if (mpi_rank == mpi_size - 1) end = size_x;
 
-  std::vector<int> pixels;
+  std::vector<int> pixels(size * size_y);
 
+#pragma omp parallel for
   for (size_t i = start; i < end; i++) {
     complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
@@ -45,12 +46,25 @@ int main(int argc, char* argv[]) {
       // Convert the smoothened value to RGB color space
       std::tuple<size_t, size_t, size_t> color = get_rgb(value);
       // Set the pixel color
-      pixels.push_back(make_color(std::get<0>(color), std::get<1>(color),
-                                  std::get<2>(color)));
+      pixels[ (size-i) * size_y +j] = make_color(std::get<0>(color), std::get<1>(color),
+                                  std::get<2>(color));
     }
   }
 
-  PBM pbm = PBM(size_x, size_y);
+
+  if (mpi_rank == 0) {
+    auto stop_time = std::chrono::high_resolution_clock::now();
+
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(
+        stop_time - start_time);
+    std::cout << duration.count() << std::endl;
+  }
+  // Save the image
+  if (output == 1 && mpi_rank == 0) 
+  {
+      
+  PBM pbm;
+
   if (mpi_rank != 0) {
     MPI_Request request;
     MPI_Isend(&pixels[0], pixels.size(), MPI_INT, 0, 0, MPI_COMM_WORLD,
@@ -58,6 +72,8 @@ int main(int argc, char* argv[]) {
     MPI_Status status;
     MPI_Wait(&request, &status);
   } else {
+ pbm = PBM(size_x, size_y);
+
     for (size_t x = 0; x < size; x++) {
       for (size_t y = 0; y < size_y; y++) pbm(x, y) = pixels[x * size_y + y];
     }
@@ -76,19 +92,9 @@ int main(int argc, char* argv[]) {
 
           pbm(i * size + x, y) = pixels[x * size_y + y];
       }
-    }
-  }
-
-  if (mpi_rank == 0) {
-    auto stop_time = std::chrono::high_resolution_clock::now();
-
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(
-        stop_time - start_time);
-    std::cout << duration.count() << std::endl;
-  }
-  // Save the image
-  if (output == 1 && mpi_rank == 0) pbm.save("image_mpi_" + type + ".pbm");
-
+    } 
+      pbm.save("image_mpi_" + type + ".pbm");
+  } }
   // Finalize the MPI environment.
   MPI_Finalize();
 
