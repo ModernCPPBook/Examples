@@ -45,8 +45,8 @@ class PBM {
 
   int height() { return h; }
 
-PBM(){};
-   
+  PBM(){};
+
   PBM(int w_, int h_) : w(w_), h(h_) {
     // initialize vector to all zeros
     for (int j = 0; j < h; j++) {
