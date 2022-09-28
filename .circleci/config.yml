@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: source /etc/profile.d/modules.sh
-      - run -i: module load mpi/openmpi-x86_64
+      - run: module load mpi/openmpi-x86_64
       - run: mkdir build
       - run: cmake -DWITH_PAR_ALG=ON -DWITH_HPX=ON -S . -B build
       - run: cd build && make -j 2
