@@ -7,7 +7,7 @@ project(Examples
     DESCRIPTION "Book examples"
     LANGUAGES CXX)
 
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.17)
 
 SET(WITH_PAR_ALG OFF CACHE BOOL "Build parallel algorithm examples")
 SET(WITH_HPX OFF CACHE BOOL "Build HPX examples")
