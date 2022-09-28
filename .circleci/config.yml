@@ -5,6 +5,7 @@ jobs:
       - image: diehlpk/parallelbook
     steps:
       - checkout
+      - run: source /etc/profile.d/modules.sh
       - run: module load mpi/openmpi-x86_64
       - run: mkdir build
       - run: cmake -DWITH_PAR_ALG=ON -DWITH_HPX=ON -S . -B build
