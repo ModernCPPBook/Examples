@@ -14,7 +14,11 @@ int main(void) {
 
   std::cout << "------" << std::endl;
 
-  for (int value : values) std::cout << value << std::endl;
+  for (const int value : values) std::cout << value << std::endl;
+
+  std::cout << "------" << std::endl;
+
+  for (int index = 0; const int value : values) std::cout << value << std::endl;
 
   return EXIT_SUCCESS;
 }
