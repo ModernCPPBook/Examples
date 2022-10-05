@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: diehlpk/parallelbook
+      - image: stevenrbrandt/cxxex-src
     steps:
       - checkout
       - run: mkdir build
