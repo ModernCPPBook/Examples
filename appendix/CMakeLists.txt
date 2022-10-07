@@ -24,7 +24,7 @@ add_test(NAME "Appendix:_Shared_pointer" COMMAND shared_pointer)
 add_executable(new new.cpp)
 add_test(NAME "Appendix:_New" COMMAND new)
 
-if(${HAVE_FLAG_STD_CXX20} AND NOT ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang"))
+if(${HAVE_FLAG_STD_CXX20} AND NOT ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
 add_executable(ranges ranges.cpp)
 add_test(NAME "Appendix:_Ranges" COMMAND ranges)
 endif()
