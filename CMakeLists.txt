@@ -5,7 +5,7 @@
 
 project(Examples
     DESCRIPTION "Book examples"
-    LANGUAGES CXX C)
+    LANGUAGES CXX C FORTRAN)
 
 cmake_minimum_required(VERSION 3.17)
 
@@ -22,7 +22,7 @@ include(CheckCXXCompilerFlag)
 check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
 
 if(${WITH_MPI})
-    find_package(MPI REQUIRED COMPONENTS CXX)	
+    find_package(MPI)	
 endif()
 
 if(NOT APPLE AND ${WITH_OPENMP})
