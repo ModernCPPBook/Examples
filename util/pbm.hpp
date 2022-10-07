@@ -39,17 +39,10 @@ class PBM_ {
   // width and height
   int w, h;
   // a vector of vector if ints to store the pixels
-  vector_type values;
   vector_type::allocator_type a;
+  vector_type values;
 
- public:
-  int width() { return w; }
-
-  int height() { return h; }
-
-  PBM_(){};
-
-  PBM_(int w_, int h_) : w(w_), h(h_), a(), values(h_,a) {
+  void _init() {
     // initialize vector to all zero
     for (int j = 0; j < h; j++) {
       std::vector<int> row;
@@ -60,6 +53,16 @@ class PBM_ {
       values[j] = std::move(row);
     }
   }
+
+ public:
+  int width() { return w; }
+
+  int height() { return h; }
+
+  PBM_(){};
+
+  PBM_(int w_, int h_) : w(w_), h(h_), a(), values(h_,a) { _init(); }
+  PBM_(int w_, int h_, vector_type::allocator_type a_) : w(w_), h(h_), a(a_), values(h_,a) { _init(); }
   ~PBM_() {}
 
   // get or set a pixel at i, j
@@ -89,5 +92,5 @@ class PBM_ {
   }
 };
 
-typedef PBM_<std::vector<std::vector<int>>> PBM;
+using PBM = PBM_<std::vector<std::vector<int>>>;
 #endif

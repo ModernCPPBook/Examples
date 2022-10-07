@@ -80,13 +80,13 @@ using PBM_numa = PBM_<hpx::compute::vector<std::vector<int>, allocator_type>>;
 int main(int argc, char* argv[]) {
   size_t output = get_size_t("OUTPUT", 1);
 
-  //  Defintion of utility
-  PBM_numa pbm(size_x, size_y);
-
   auto numa_nodes = hpx::compute::host::numa_domains();
   allocator_type alloc(numa_nodes);
   executor_type exec(numa_nodes);
   auto policy = hpx::execution::par.on(exec);
+
+  //  Defintion of utility
+  PBM_numa pbm(size_x, size_y, alloc);
 
   auto start = std::chrono::high_resolution_clock::now();
   hpx::experimental::for_loop(policy, 0, size_x, [&pbm](size_t i) {
