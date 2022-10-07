@@ -22,6 +22,7 @@ add_executable(future_parallel future_parallel.cpp)
 add_test(NAME "Set:_Future_Mandelbrot" COMMAND future_parallel 2) 
 
 if(${WITH_HPX})
+    add_hpx_executable(numa_parallel SOURCES numa_parallel.cpp)
     add_hpx_executable(algorithm_parallel SOURCES algorithm_parallel.cpp)
     add_test(NAME "Set:_Parallel_Algorithm_Mandelbrot" COMMAND algorithm_parallel --hpx:threads=2)
     
@@ -51,6 +52,7 @@ endif()
 
 if(${WITH_HPX})
     target_include_directories(algorithm_parallel PUBLIC "../util/")
+    target_include_directories(numa_parallel PUBLIC "../util/")
     target_include_directories(future_parallel_hpx PUBLIC "../util/")
 endif()
 

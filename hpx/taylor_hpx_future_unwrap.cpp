@@ -36,7 +36,7 @@ int main(int args, char** argv) {
   }
 
   double result = 0;
-  auto fp = hpx::unwrapping([&](std::vector<hpx::future<double>> f) {
+  auto fp = hpx::util::unwrapping([&](std::vector<hpx::future<double>> f) {
     for (size_t i = 0; i < f.size(); i++) result += f[i].get();
   });
 

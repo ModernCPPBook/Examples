@@ -17,10 +17,8 @@ int main(int argc, char* argv[]) {
   //  Defintion of utility
   PBM pbm = PBM(size_x, size_y);
 
-  std::vector<size_t> index(size_x);
-
   auto start = std::chrono::high_resolution_clock::now();
-  hpx::for_loop(hpx::execution::par, 0, size_x, [&pbm](size_t i) {
+  hpx::experimental::for_loop(hpx::execution::par, 0, size_x, [&pbm](size_t i) {
     complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 

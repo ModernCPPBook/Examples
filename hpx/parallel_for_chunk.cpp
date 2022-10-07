@@ -9,11 +9,11 @@ int main(int args, char** argv) {
 
   // Static chunk size
   hpx::execution::static_chunk_size scs(10);
-  hpx::for_loop(hpx::execution::par.with(scs), 0, a.size(),
+  hpx::experimental::for_loop(hpx::execution::par.with(scs), 0, a.size(),
                 [&](size_t i) { a[i] = i * i; });
 
   hpx::execution::dynamic_chunk_size dcs(10);
-  hpx::for_loop(hpx::execution::par.with(dcs), 0, a.size(),
+  hpx::experimental::for_loop(hpx::execution::par.with(dcs), 0, a.size(),
                 [&](size_t i) { a[i] = i * i; });
 
   return EXIT_SUCCESS;

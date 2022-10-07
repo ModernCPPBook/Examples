@@ -34,36 +34,39 @@ int make_color(int r, int g, int b) {
   return (b * max_color + g) * max_color + r;
 }
 
-class PBM {
+template<typename vector_type>
+class PBM_ {
   // width and height
   int w, h;
   // a vector of vector if ints to store the pixels
-  std::vector<std::vector<int>> values;
+  vector_type values;
+  vector_type::allocator_type a;
 
  public:
   int width() { return w; }
 
   int height() { return h; }
 
-  PBM(){};
+  PBM_(){};
 
-  PBM(int w_, int h_) : w(w_), h(h_) {
-    // initialize vector to all zeros
+  PBM_(int w_, int h_) : w(w_), h(h_), a(), values(h_,a) {
+    // initialize vector to all zero
     for (int j = 0; j < h; j++) {
       std::vector<int> row;
       for (int i = 0; i < w; i++) {
         row.push_back(0);
       }
-      values.push_back(std::move(row));
+      //values.push_back(std::move(row));
+      values[j] = std::move(row);
     }
   }
-  ~PBM() {}
+  ~PBM_() {}
 
   // get or set a pixel at i, j
-  int& operator()(int i, int j) { return values.at(j).at(i); }
+  int& operator()(int i, int j) { return values[j][i]; }
 
   // get or set a row at j
-  std::vector<int>& row(int j) { return values.at(j); }
+  std::vector<int>& row(int j) { return values[j]; }
 
   // save to a file
   void save(const std::string& fname) {
@@ -72,9 +75,9 @@ class PBM {
     f << w << " " << h << "\n";
     f << "255\n";
     for (int j = 0; j < h; j++) {
-      auto& row = values.at(j);
+      auto& row = values[j];
       for (int i = 0; i < w; i++) {
-        int color = row.at(i);
+        int color = row[i];
         for (int c = 0; c < 3; c++) {
           f << (color % max_color) << " ";
           color /= max_color;
@@ -85,4 +88,6 @@ class PBM {
     f.close();
   }
 };
+
+typedef PBM_<std::vector<std::vector<int>>> PBM;
 #endif
