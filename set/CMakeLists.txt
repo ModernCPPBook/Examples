@@ -8,30 +8,30 @@ if(NOT APPLE)
    target_compile_options(openmp_parallel PUBLIC "${OpenMP_CXX_FLAGS}" )
    target_link_libraries(openmp_parallel PUBLIC OpenMP::OpenMP_CXX)
    target_include_directories(openmp_parallel PUBLIC "../util/")
-   add_test(NAME "Set: OenMP Mandelbrot" COMMAND serial) 
+   add_test(NAME "Set:_OpenMP_Mandelbrot" COMMAND serial) 
 endif()
 
 add_executable(serial serial.cpp)
-add_test(NAME "Set: Serial Mandelbrot" COMMAND serial) 
-add_test(NAME "Set: Serial Julia" COMMAND serial julia) 
+add_test(NAME "Set:_Serial_Mandelbrot" COMMAND serial) 
+add_test(NAME "Set:_Serial_Julia" COMMAND serial julia) 
 
 add_executable(thread_parallel thread_parallel.cpp)
-add_test(NAME "Set: Thread Mandelbrot" COMMAND thread_parallel 2) 
+add_test(NAME "Set:_Thread_Mandelbrot" COMMAND thread_parallel 2) 
 
 add_executable(future_parallel future_parallel.cpp)
-add_test(NAME "Set: Future Mandelbrot" COMMAND future_parallel 2) 
+add_test(NAME "Set:_Future_Mandelbrot" COMMAND future_parallel 2) 
 
 if(${WITH_HPX})
     add_hpx_executable(algorithm_parallel SOURCES algorithm_parallel.cpp)
-    add_test(NAME "Set: Parallel Algorithm Mandelbrot" COMMAND algorithm_parallel --hpx:threads=2)
+    add_test(NAME "Set:_Parallel_Algorithm_Mandelbrot" COMMAND algorithm_parallel --hpx:threads=2)
     
     add_hpx_executable(future_parallel_hpx SOURCES future_parallel_hpx.cpp)
-    add_test(NAME "Set: HPX Future Mandelbrot" COMMAND future_parallel_hpx)
+    add_test(NAME "Set:_HPX_Future_Mandelbrot" COMMAND future_parallel_hpx)
 endif()
 
 if(${WITH_COROUTINES})
     add_hpx_executable(future_parallel_hpx_coroutine SOURCES future_parallel_hpx_coroutine.cpp)
-    add_test(NAME "Set: HPX Future Coroutines Mandelbrot" COMMAND future_parallel_hpx_coroutine)
+    add_test(NAME "Set:_HPX_Future_Coroutines_Mandelbrot" COMMAND future_parallel_hpx_coroutine)
 endif()
 
 target_include_directories(serial PUBLIC "../util/")

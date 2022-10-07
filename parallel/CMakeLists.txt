@@ -12,7 +12,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     add_executable(taylor_par taylor_par.cpp)
     target_link_libraries(taylor_par PUBLIC TBB::tbb)
     target_compile_options(taylor_par PRIVATE -std=c++1z)
-    add_test(NAME "Parallel: Taylor parallel algorithms" COMMAND taylor_par 100 0.5)
+    add_test(NAME "Parallel:_Taylor_parallel_algorithms" COMMAND taylor_par 100 0.5)
 endif()
 endif()
 
@@ -22,6 +22,6 @@ target_link_libraries(taylor_thread PRIVATE Threads::Threads)
 add_executable(taylor_future taylor_future.cpp)
 target_link_libraries(taylor_future PRIVATE Threads::Threads)
 
-add_test(NAME "Parallel: Taylor thread" COMMAND taylor_thread 100 0.5 3)
-add_test(NAME "Parallel: Taylor future" COMMAND taylor_future 100 0.5 3)
+add_test(NAME "Parallel:_Taylor_thread" COMMAND taylor_thread 100 0.5 3)
+add_test(NAME "Parallel:_Taylor_future" COMMAND taylor_future 100 0.5 3)
 
