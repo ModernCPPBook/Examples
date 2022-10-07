@@ -13,7 +13,7 @@ add_executable(move move.cpp)
 add_test(NAME "Appendix:_Move" COMMAND move)
 
 add_executable(ranges_pure ranges_pure.cpp)
-add_test(NAME "Appendix:_Ranges pure" COMMAND ranges_pure)
+add_test(NAME "Appendix:_Ranges_pure" COMMAND ranges_pure)
 
 add_executable(unique_pointer unique_pointer.cpp)
 add_test(NAME "Appendix:_Unique_pointer" COMMAND unique_pointer)
