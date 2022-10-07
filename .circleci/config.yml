@@ -5,6 +5,7 @@ jobs:
       - image: stevenrbrandt/cxxex-src
     steps:
       - checkout
+      - run: module load mpi/mpich-x86_64
       - run: mkdir build
       - run: cmake -DWITH_PAR_ALG=ON -DWITH_HPX=ON -DWITH_OPENMP=ON -DWITH_MPI=ON -S . -B build
       - run: cd build && make -j 2
