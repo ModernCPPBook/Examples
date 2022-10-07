@@ -89,11 +89,14 @@ int main(int argc, char* argv[]) {
   PBM_numa pbm(size_x, size_y, alloc);
 
   auto start = std::chrono::high_resolution_clock::now();
-  hpx::experimental::for_loop(policy, 0, size_x, [&pbm](size_t i) {
-    complex c =
-        complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
-    for (size_t j = 0; j < size_y; j++) {
+  hpx::experimental::for_loop(policy, 0, size_y, [&pbm](size_t j) {
+
+    for (size_t i = 0; i < size_x; i++) {
+
+      complex c =
+        complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
+      //
       // Get the number of iterations
       int value = compute_pixel(c + 4.0 * j / size_y - 2.0);
       // Convert the smoothened value to RGB color space
