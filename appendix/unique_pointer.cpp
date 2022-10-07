@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <memory>
 
 int main(void) {
