@@ -5,7 +5,7 @@
 
 project(Examples
     DESCRIPTION "Book examples"
-    LANGUAGES CXX)
+    LANGUAGES CXX C)
 
 cmake_minimum_required(VERSION 3.17)
 
