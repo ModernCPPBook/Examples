@@ -14,6 +14,7 @@ SET(WITH_HPX OFF CACHE BOOL "Build HPX examples")
 SET(WITH_SMID OFF CACHE BOOL "Build HPX example using SIMD")
 SET(WITH_COROUTINES OFF CACHE BOOL "Build HPX example using coroutines")
 SET(WITH_MPI OFF CACHE BOOL "Build MPI example")
+SET(WITH_OPENMP OFF CACHE BOOL "Build OpenMP example")
 
 include(CTest)
 include(CheckCXXCompilerFlag)
@@ -21,10 +22,10 @@ include(CheckCXXCompilerFlag)
 check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
 
 if(${WITH_MPI})
-   find_package(MPI REQUIRED)	
+    find_package(MPI REQUIRED COMPONENTS CXX )	
 endif()
 
-if(NOT APPLE)
+if(NOT APPLE AND ${WITH_OPENMP})
     find_package(OpenMP REQUIRED)
 endif()
 
@@ -38,9 +39,7 @@ if(${WITH_HPX})
 endif()
 
 if(${HAVE_FLAG_STD_CXX20})
-
     set(CMAKE_CXX_STANDARD 20)
-
 else()
 
     check_cxx_compiler_flag(-std=c++17 HAVE_FLAG_STD_CXX17)

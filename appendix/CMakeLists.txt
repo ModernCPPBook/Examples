@@ -13,7 +13,7 @@ add_executable(move move.cpp)
 add_test(NAME "Appendix:_Move" COMMAND move)
 
 add_executable(ranges_pure ranges_pure.cpp)
-add_test(NAME "Appendix:_Ranges pure" COMMAND ranges_pure)
+add_test(NAME "Appendix:_Ranges_pure" COMMAND ranges_pure)
 
 add_executable(unique_pointer unique_pointer.cpp)
 add_test(NAME "Appendix:_Unique_pointer" COMMAND unique_pointer)
@@ -24,7 +24,7 @@ add_test(NAME "Appendix:_Shared_pointer" COMMAND shared_pointer)
 add_executable(new new.cpp)
 add_test(NAME "Appendix:_New" COMMAND new)
 
-if(${HAVE_FLAG_STD_CXX20} AND NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+if("${HAVE_FLAG_STD_CXX20}" AND NOT ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
 add_executable(ranges ranges.cpp)
 add_test(NAME "Appendix:_Ranges" COMMAND ranges)
 endif()

@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: mkdir build
-      - run: cmake -DWITH_PAR_ALG=ON -DWITH_HPX=ON -S . -B build
+      - run: export PATH=$PATH:/usr/lib64/openmpi/bin/ && cmake -DWITH_PAR_ALG=ON -DWITH_HPX=ON -DWITH_OPENMP=ON -DWITH_MPI=ON -S . -B build
       - run: cd build && make -j 2
       - run: cd build && ctest
       - run: rm -rf build

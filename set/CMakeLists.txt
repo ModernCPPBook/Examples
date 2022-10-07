@@ -3,7 +3,7 @@
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-if(NOT APPLE)
+if(NOT APPLE AND ${WITH_OPENMP})
    add_executable(openmp_parallel openmp_parallel.cpp)
    target_compile_options(openmp_parallel PUBLIC "${OpenMP_CXX_FLAGS}" )
    target_link_libraries(openmp_parallel PUBLIC OpenMP::OpenMP_CXX)
@@ -43,11 +43,13 @@ if(${WITH_MPI})
    add_executable(mpi mpi.cpp)
    target_link_libraries(mpi PUBLIC MPI::MPI_CXX)
    target_include_directories(mpi PUBLIC "../util/")
+   if(${WITH_OPENMP})
    add_executable(mpi_openmp mpi.cpp)
    target_compile_options(mpi_openmp PUBLIC "${OpenMP_CXX_FLAGS}" )
    target_link_libraries(mpi_openmp PUBLIC MPI::MPI_CXX)
    target_link_libraries(mpi_openmp PUBLIC OpenMP::OpenMP_CXX)
    target_include_directories(mpi_openmp PUBLIC "../util/")
+   endif()
 endif()
 
 if(${WITH_HPX})
