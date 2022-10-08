@@ -96,8 +96,7 @@ int main(int argc, char* argv[]) {
 
       complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
-      //
-      // Get the number of iterations
+      
       int value = compute_pixel(c + 4.0 * j / size_y - 2.0);
       // Convert the smoothened value to RGB color space
       std::tuple<size_t, size_t, size_t> color = get_rgb(value);
