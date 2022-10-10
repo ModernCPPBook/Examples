@@ -44,14 +44,15 @@ class PBM_ {
 
   void _init() {
     // initialize vector to all zero
-    for (int j = 0; j < h; j++) {
+    for (int j = 0; j < w; j++) {
       std::vector<int> row;
-      for (int i = 0; i < w; i++) {
+      for (int i = 0; i < h; i++) {
         row.push_back(0);
       }
       //values.push_back(std::move(row));
       values[j] = std::move(row);
     }
+    values[w-1][h-1] = 0.0;
   }
 
  public:
@@ -61,15 +62,18 @@ class PBM_ {
 
   PBM_(){};
 
-  PBM_(int w_, int h_) : w(w_), h(h_), a(), values(h_,a) { _init(); }
-  PBM_(int w_, int h_, vector_type::allocator_type a_) : w(w_), h(h_), a(a_), values(h_,a) { _init(); }
+  PBM_(int w_, int h_) : w(w_), h(h_), a(), values(w_,a) { _init(); }
+  PBM_(int w_, int h_, vector_type::allocator_type a_) : w(w_), h(h_), a(a_), values(w_,a) { _init(); }
   ~PBM_() {}
 
   // get or set a pixel at i, j
-  int& operator()(int i, int j) { return values[j][i]; }
+  int& operator()(int i, int j) {
+    if(i < 0 || j < 0 || i >= w || j >= h) {
+        abort();
+    }
+    return values[i].at(j);
+  }
 
-  // get or set a row at j
-  std::vector<int>& row(int j) { return values[j]; }
 
   // save to a file
   void save(const std::string& fname) {
@@ -78,9 +82,8 @@ class PBM_ {
     f << w << " " << h << "\n";
     f << "255\n";
     for (int j = 0; j < h; j++) {
-      auto& row = values[j];
       for (int i = 0; i < w; i++) {
-        int color = row[i];
+        int color = this->operator()(i,j);
         for (int c = 0; c < 3; c++) {
           f << (color % max_color) << " ";
           color /= max_color;

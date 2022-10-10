@@ -56,9 +56,11 @@ int main(int argc, char* argv[]) {
   for (auto&& f : futures) f.wait();
 
   auto stop = std::chrono::high_resolution_clock::now();
-  auto duration =
-      std::chrono::duration_cast<std::chrono::seconds>(stop - start);
-  std::cout << duration.count() << std::endl;
+  hpx::experimental::for_loop(hpx::execution::par, 0, size_x, [&pbm](size_t i) {
+    complex c =
+        complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
+
+    for (size_t j = 0; j < size_y; j++) {
 
   // Save the image
   if (output == 1) pbm.save("image_future_parallel_" + type + ".pbm");

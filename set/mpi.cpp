@@ -54,9 +54,9 @@ int main(int argc, char* argv[]) {
   if (mpi_rank == 0) {
     auto stop_time = std::chrono::high_resolution_clock::now();
 
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
         stop_time - start_time);
-    std::cout << duration.count() << std::endl;
+    std::cout << duration.count()*1e-6 << std::endl;
   }
   // Save the image
   if (output == 1 && mpi_rank == 0) {
