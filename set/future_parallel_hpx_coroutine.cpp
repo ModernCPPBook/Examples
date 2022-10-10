@@ -62,11 +62,7 @@ int main(int argc, char* argv[]) {
   run(size, partitions, output, &pbm).get();
 
   auto stop = std::chrono::high_resolution_clock::now();
-  hpx::experimental::for_loop(hpx::execution::par, 0, size_x, [&pbm](size_t i) {
-    complex c =
-        complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
-    for (size_t j = 0; j < size_y; j++) {
 
   if (output == 1) pbm.save("image_future_parallel_" + type + ".pbm");
 
