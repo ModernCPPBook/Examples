@@ -61,11 +61,9 @@ int main(int argc, char* argv[]) {
       .get();
 
   auto stop = std::chrono::high_resolution_clock::now();
-  hpx::experimental::for_loop(hpx::execution::par, 0, size_x, [&pbm](size_t i) {
-    complex c =
-        complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
-
-    for (size_t j = 0; j < size_y; j++) {
+  auto duration =
+      std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+  std::cout << duration.count()*1e-6 << std::endl;
 
   return EXIT_SUCCESS;
 }
