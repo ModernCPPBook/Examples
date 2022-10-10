@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
   size_t output = get_size_t("OUTPUT", 1);
 
   // Initialize the MPI environment
-  MPI_Init(NULL, NULL);
+  MPI_Init(&argc, &argv);
 
   // Get the number of processes
   int mpi_size;
@@ -25,17 +25,25 @@ int main(int argc, char* argv[]) {
   int mpi_rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &mpi_rank);
 
+
+
   auto start_time = std::chrono::high_resolution_clock::now();
+
+
 
   size_t size = std::round(size_x / mpi_size);
 
-  size_t start = mpi_rank * size;
-  size_t end = (mpi_rank + 1) * size;
+  int start = mpi_rank * size;
+  int end = (mpi_rank + 1) * size;
   if (mpi_rank == mpi_size - 1) end = size_x;
+
+ 
 
   std::vector<int> pixels(size * size_y);
 
-#pragma omp parallel for
+
+
+//#pragma omp parallel for
   for (size_t i = start; i < end; i++) {
     complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
@@ -46,7 +54,7 @@ int main(int argc, char* argv[]) {
       // Convert the smoothened value to RGB color space
       std::tuple<size_t, size_t, size_t> color = get_rgb(value);
       // Set the pixel color
-      pixels[(size - i) * size_y + j] = make_color(
+      pixels.at((-start+i) * size_y + j) = make_color(
           std::get<0>(color), std::get<1>(color), std::get<2>(color));
     }
   }
