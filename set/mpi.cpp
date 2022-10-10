@@ -25,11 +25,7 @@ int main(int argc, char* argv[]) {
   int mpi_rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &mpi_rank);
 
-
-
   auto start_time = std::chrono::high_resolution_clock::now();
-
-
 
   size_t size = std::round(size_x / mpi_size);
 
@@ -37,13 +33,9 @@ int main(int argc, char* argv[]) {
   int end = (mpi_rank + 1) * size;
   if (mpi_rank == mpi_size - 1) end = size_x;
 
- 
-
   std::vector<int> pixels(size * size_y);
 
-
-
-//#pragma omp parallel for
+  //#pragma omp parallel for
   for (size_t i = start; i < end; i++) {
     complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
@@ -54,7 +46,7 @@ int main(int argc, char* argv[]) {
       // Convert the smoothened value to RGB color space
       std::tuple<size_t, size_t, size_t> color = get_rgb(value);
       // Set the pixel color
-      pixels.at((-start+i) * size_y + j) = make_color(
+      pixels.at((-start + i) * size_y + j) = make_color(
           std::get<0>(color), std::get<1>(color), std::get<2>(color));
     }
   }
@@ -64,7 +56,7 @@ int main(int argc, char* argv[]) {
 
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
         stop_time - start_time);
-    std::cout << duration.count()*1e-6 << std::endl;
+    std::cout << duration.count() * 1e-6 << std::endl;
   }
   // Save the image
   if (output == 1 && mpi_rank == 0) {

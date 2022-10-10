@@ -63,7 +63,6 @@ int main(int argc, char* argv[]) {
 
   auto stop = std::chrono::high_resolution_clock::now();
 
-
   if (output == 1) pbm.save("image_future_parallel_" + type + ".pbm");
 
   return EXIT_SUCCESS;

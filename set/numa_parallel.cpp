@@ -5,12 +5,10 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/hpx_main.hpp>
-#include <hpx/parallel/algorithm.hpp>
-#include <pbm.hpp>
-
 #include <hpx/local/execution.hpp>
 #include <hpx/modules/compute.hpp>
-
+#include <hpx/parallel/algorithm.hpp>
+#include <pbm.hpp>
 #include <vector>
 
 #include "config.h"
@@ -38,8 +36,7 @@ int main(int argc, char* argv[]) {
     complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
 
-    for(size_t j=0; j < pbm.height(); j++) {
-      
+    for (size_t j = 0; j < pbm.height(); j++) {
       int value = compute_pixel(c + 4.0 * j / size_y - 2.0);
       // Convert the smoothened value to RGB color space
       std::tuple<size_t, size_t, size_t> color = get_rgb(value);
@@ -51,7 +48,7 @@ int main(int argc, char* argv[]) {
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration =
       std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-  std::cout << duration.count()*1e-6 << std::endl;
+  std::cout << duration.count() * 1e-6 << std::endl;
 
   // Save the image
   if (output == 1) pbm.save("image_parallel_" + type + ".pbm");

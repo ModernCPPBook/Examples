@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration =
       std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-  std::cout << duration.count()*1e-6 << std::endl;
+  std::cout << duration.count() * 1e-6 << std::endl;
 
   return EXIT_SUCCESS;
 }
