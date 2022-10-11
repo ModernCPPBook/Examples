@@ -23,12 +23,17 @@ int main(int argc, char* argv[]) {
   size_t output = get_size_t("OUTPUT", 1);
 
   auto numa_nodes = hpx::compute::host::numa_domains();
+  std::cout << "numa_nodes: " << numa_nodes.size() << std::endl;
   allocator_type alloc(numa_nodes);
   executor_type exec(numa_nodes);
   auto policy = hpx::execution::par.on(exec);
 
   //  Defintion of utility
   PBM_numa pbm(size_x, size_y, alloc);
+  // Reallocate vectors on numa domains
+  hpx::experimental::for_loop(policy, 0, pbm.width(), [&pbm](size_t i) {
+    pbm.alloc_column(i);
+  });
 
   auto start = std::chrono::high_resolution_clock::now();
 

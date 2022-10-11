@@ -44,18 +44,17 @@ class PBM_ {
 
   void _init() {
     // initialize vector to all zero
-    for (int j = 0; j < w; j++) {
-      std::vector<int> row;
-      for (int i = 0; i < h; i++) {
-        row.push_back(0);
-      }
-      // values.push_back(std::move(row));
-      values[j] = std::move(row);
+    for (int i = 0; i < w; i++) {
+      alloc_column(i);
     }
-    values[w - 1][h - 1] = 0.0;
   }
 
  public:
+   void alloc_column(int i) {
+     std::vector<int> col(h,0);
+     values[i] = std::move(col);
+   }
+
   int width() { return w; }
 
   int height() { return h; }
@@ -74,7 +73,7 @@ class PBM_ {
     if (i < 0 || j < 0 || i >= w || j >= h) {
       abort();
     }
-    return values[i].at(j);
+    return values[i][j];
   }
 
   // save to a file
