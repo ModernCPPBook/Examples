@@ -39,7 +39,7 @@ class PBM_ {
   // width and height
   int w, h;
   // a vector of vector if ints to store the pixels
-  vector_type::allocator_type a;
+  typename vector_type::allocator_type a;
   vector_type values;
 
   void _init() {
