@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
       // Convert the smoothened value to RGB color space
       std::tuple<size_t, size_t, size_t> color = get_rgb(value);
       // Set the pixel color
-      pixels.at((-start + i) * size_y + j) = make_color(
+      pixels[(-start + i) * size_y + j] = make_color(
           std::get<0>(color), std::get<1>(color), std::get<2>(color));
     }
   }
@@ -61,11 +61,13 @@ int main(int argc, char* argv[]) {
   // Save the image
   if (output == 1 && mpi_rank == 0) {
     PBM pbm;
-
+    std::cout << "out " << std::endl;
     if (mpi_rank != 0) {
       MPI_Request request;
       MPI_Isend(&pixels[0], pixels.size(), MPI_INT, 0, 0, MPI_COMM_WORLD,
                 &request);
+      MPI_Status status;
+      MPI_Wait(&request, &status);
     } else {
       pbm = PBM(size_x, size_y);
 
@@ -79,12 +81,14 @@ int main(int argc, char* argv[]) {
         MPI_Request request;
         MPI_Irecv(&pixels[0], pixels.size(), MPI_INT, i, 0, MPI_COMM_WORLD,
                   &request);
-
+      MPI_Status status;
+      MPI_Wait(&request, &status);
         for (size_t x = 0; x < size; x++) {
-          for (size_t y = 0; y < size_y; y++)
+          for (size_t y = 0; y < size_y; y++){
 
+            //std::cout << i << " " << x << " " << y << " " << i * size + x << std::endl;
             pbm(i * size + x, y) = pixels[x * size_y + y];
-        }
+        }}
       }
       pbm.save("image_mpi_" + type + ".pbm");
     }
