@@ -30,6 +30,9 @@ add_test(NAME "HPX:_toplology" COMMAND topology)
 add_hpx_executable(plain_action SOURCES plain_action.cpp)
 add_test(NAME "HPX:_plain_action" COMMAND plain_action)
 
+add_hpx_executable(serialization SOURCES serialization.cpp)
+add_test(NAME "HPX:_serialization" COMMAND serialization)
+
 if(${WITH_COROUTINES})
   #add_hpx_executable(taylor_hpx_future_coroutine SOURCES taylor_hpx_future_coroutine.cpp)
   add_test(NAME "HPX:_Taylor_future_coroutine" COMMAND taylor_hpx_future_coroutine 100 0.5 3)

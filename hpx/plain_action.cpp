@@ -30,4 +30,6 @@ int main(int args, char** argv) {
     future = hpx::async<square_action>(remote[0], 1000);
     std::cout << future.get() << std::endl;
   }
+
+  return EXIT_SUCCESS;
 }
