@@ -27,6 +27,9 @@ add_test(NAME "HPX:_Parallel_for_async" COMMAND parallel_for_async)
 add_hpx_executable(toplology SOURCES topology.cpp)
 add_test(NAME "HPX:_toplology" COMMAND topology)
 
+add_hpx_executable(plain_action SOURCES plain_action.cpp)
+add_test(NAME "HPX:_plain_action" COMMAND plain_action)
+
 if(${WITH_COROUTINES})
   #add_hpx_executable(taylor_hpx_future_coroutine SOURCES taylor_hpx_future_coroutine.cpp)
   add_test(NAME "HPX:_Taylor_future_coroutine" COMMAND taylor_hpx_future_coroutine 100 0.5 3)

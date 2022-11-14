@@ -81,14 +81,15 @@ int main(int argc, char* argv[]) {
         MPI_Request request;
         MPI_Irecv(&pixels[0], pixels.size(), MPI_INT, i, 0, MPI_COMM_WORLD,
                   &request);
-      MPI_Status status;
-      MPI_Wait(&request, &status);
+        MPI_Status status;
+        MPI_Wait(&request, &status);
         for (size_t x = 0; x < size; x++) {
-          for (size_t y = 0; y < size_y; y++){
-
-            //std::cout << i << " " << x << " " << y << " " << i * size + x << std::endl;
+          for (size_t y = 0; y < size_y; y++) {
+            // std::cout << i << " " << x << " " << y << " " << i * size + x <<
+            // std::endl;
             pbm(i * size + x, y) = pixels[x * size_y + y];
-        }}
+          }
+        }
       }
       pbm.save("image_mpi_" + type + ".pbm");
     }

@@ -50,10 +50,10 @@ class PBM_ {
   }
 
  public:
-   void alloc_column(int i) {
-     std::vector<int> col(h,0);
-     values[i] = std::move(col);
-   }
+  void alloc_column(int i) {
+    std::vector<int> col(h, 0);
+    values[i] = std::move(col);
+  }
 
   int width() { return w; }
 
