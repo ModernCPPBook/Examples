@@ -62,7 +62,7 @@ class PBM_ {
   PBM_(){};
 
   PBM_(int w_, int h_) : w(w_), h(h_), a(), values(w_, a) { _init(); }
-  PBM_(int w_, int h_, vector_type::allocator_type a_)
+  PBM_(int w_, int h_, typename vector_type::allocator_type a_)
       : w(w_), h(h_), a(a_), values(w_, a) {
     _init();
   }
