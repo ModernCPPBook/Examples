@@ -24,8 +24,8 @@ add_test(NAME "HPX:_Parallel_for_with_chunk_size" COMMAND parallel_for_chunk)
 add_hpx_executable(parallel_for_async SOURCES parallel_for_async.cpp)
 add_test(NAME "HPX:_Parallel_for_async" COMMAND parallel_for_async)
 
-add_hpx_executable(toplology SOURCES topology.cpp)
-add_test(NAME "HPX:_toplology" COMMAND topology)
+add_hpx_executable(topology SOURCES topology.cpp)
+add_test(NAME "HPX:_topology" COMMAND topology)
 
 add_hpx_executable(plain_action SOURCES plain_action.cpp)
 add_test(NAME "HPX:_plain_action" COMMAND plain_action)
