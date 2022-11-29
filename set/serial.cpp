@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <numeric>
 #include <pbm.hpp>
+#include <chrono>
 
 #include "config.h"
 #include "kernel.h"
@@ -17,6 +18,8 @@ int main(int argc, char* argv[]) {
 
   std::vector<size_t> index(size_x);
   std::iota(index.begin(), index.end(), 0);
+
+  auto start = std::chrono::high_resolution_clock::now();
 
   std::for_each(index.begin(), index.end(), [&pbm](size_t i) {
     complex c =
@@ -32,6 +35,10 @@ int main(int argc, char* argv[]) {
                              std::get<2>(color));
     }
   });
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration =
+      std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+  std::cout << duration.count() * 1e-6 << std::endl;
 
   // Save the image
   pbm.save("image_serial_" + type + ".pbm");
