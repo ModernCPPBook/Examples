@@ -22,7 +22,7 @@ int main(int args, char** argv) {
   std::cout << hpx::find_all_localities().size() << std::endl;
 
   // Get the global address of the localtiy the function is executed
-  auto here = hpx::find_here();
+  hpx::id_type here = hpx::find_here();
 
   return EXIT_SUCCESS;
 }

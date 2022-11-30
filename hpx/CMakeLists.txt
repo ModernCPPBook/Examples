@@ -33,6 +33,9 @@ add_test(NAME "HPX:_plain_action" COMMAND plain_action)
 add_hpx_executable(serialization SOURCES serialization.cpp)
 add_test(NAME "HPX:_serialization" COMMAND serialization)
 
+add_hpx_executable(taylor_hpx_distributed SOURCES taylor_hpx_distributed.cpp)
+add_test(NAME "HPX:_Taylor_distributed" COMMAND taylor_hpx_distributed)
+
 if(${WITH_COROUTINES})
   #add_hpx_executable(taylor_hpx_future_coroutine SOURCES taylor_hpx_future_coroutine.cpp)
   add_test(NAME "HPX:_Taylor_future_coroutine" COMMAND taylor_hpx_future_coroutine 100 0.5 3)
@@ -42,3 +45,5 @@ if(${WITH_SIMD})
   add_hpx_executable(parallel_reduce_simd SOURCES parallel_reduce_simd.cpp)
 add_test(NAME "HPX:_Parallel_reduce_SIMD" COMMAND parallel_reduce_simd)
 endif()
+
+

@@ -55,8 +55,7 @@ static void square(data d) {
 HPX_PLAIN_ACTION(square, square_action);
 
 int main(int args, char** argv) {
-  
-  data d = data(10,2.);
+  data d = data(10, 2.);
 
   auto remote = hpx ::find_remote_localities();
   if (remote.size() > 0) {
