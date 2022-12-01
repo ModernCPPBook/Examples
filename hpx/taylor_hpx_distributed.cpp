@@ -73,7 +73,35 @@ struct data_client : hpx ::components ::client_base<data_client, data_server> {
 
   data_client(hpx::id_type where, size_t size, double init)
       : base_type(hpx::new_<data_server>(where, size, init)) {}
+
+ hpx::future<data> get_data() const
+    {
+        data_server::get_data_action act;
+        return hpx::async(act, get_id());
+    }  
+
+
 };
+
+static double compute(data_client client,double x){
+
+data d = client.get_data().get();
+
+size_t size = d.size();
+
+double sum = 0;
+
+for ( size_t i = 0 ; i < size ; i++)
+  {
+  double e = d[i];
+ 
+  sum += std::pow(-1.0, e + 1) * std::pow(x, e) / (e); 
+  }
+
+  return sum;
+}
+
+HPX_PLAIN_ACTION(compute, compute_action)
 
 int main(int args, char** argv) {
   int n = std::stoi(argv[1]);
@@ -82,43 +110,33 @@ int main(int args, char** argv) {
   std::vector<hpx::id_type> localities = hpx::find_all_localities();
   std::size_t amount = localities.size();
 
+  std::cout << amount << std::endl;
+
   size_t partitions = std::round(n / amount);
 
   std::vector<data_client> parts(amount);
 
   for (size_t i = 0; i < amount; i++) {
-    size_t begin = i * partitions;
+
+    size_t begin = 1;
+
+    if (i > 0 ) begin = i * partitions;
 
     if (i == amount - 1)
 
-      parts[i] = data_client(localities[i], n, begin);
+      parts[i] = data_client(localities[i], partitions + n % amount, begin);
 
     else
 
       parts[i] = data_client(localities[i], partitions, begin);
   }
 
-  /**
-  std::vector<double> parts(n);
-  std::iota(parts.begin(), parts.end(), 1);
-
-  size_t partitions = std::round(n / amount);
-
   std::vector<hpx::future<double>> futures;
-  for (size_t i = 0; i < amount; i++) {
-    size_t begin = i * partitions;
-    size_t end = (i + 1) * partitions;
-    if (i == amount - 1) end = n;
 
-    hpx::future<double> f = hpx::async([begin, end, x, &parts]() -> double {
-      std::for_each(parts.begin() + begin, parts.begin() + end, [x](double& e) {
-        e = std::pow(-1.0, e + 1) * std::pow(x, e) / (e);
-      });
+  for (size_t i = 0 ; i < amount ; i++){
 
-      return hpx::reduce(parts.begin() + begin, parts.begin() + end, 0.);
-    });
+    futures.push_back(hpx::async<compute_action>(localities[i],parts[i],x));
 
-    futures.push_back(std::move(f));
   }
 
   double result = 0;
@@ -134,6 +152,5 @@ int main(int args, char** argv) {
   std::cout << "Difference of Taylor and C++ result " << result - std::log1p(x)
             << " after " << n << " iterations." << std::endl;
 
-  */
   return EXIT_SUCCESS;
 }
