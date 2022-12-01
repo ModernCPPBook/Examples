@@ -91,8 +91,11 @@ size_t size = d.size();
 
 double sum = 0;
 
+std::cout << d[size-1] << std::endl;
+
 for ( size_t i = 0 ; i < size ; i++)
   {
+  
   double e = d[i];
  
   sum += std::pow(-1.0, e + 1) * std::pow(x, e) / (e); 
@@ -124,7 +127,7 @@ int main(int args, char** argv) {
 
     if (i == amount - 1)
 
-      parts[i] = data_client(localities[i], partitions + n % amount, begin);
+      parts[i] = data_client(localities[i], n - (partitions * i) , begin);
 
     else
 
@@ -139,6 +142,8 @@ int main(int args, char** argv) {
 
   }
 
+  if (hpx::find_here() == localities[0]){
+
   double result = 0;
 
   hpx::when_all(futures)
@@ -151,6 +156,8 @@ int main(int args, char** argv) {
 
   std::cout << "Difference of Taylor and C++ result " << result - std::log1p(x)
             << " after " << n << " iterations." << std::endl;
+
+  }
 
   return EXIT_SUCCESS;
 }
