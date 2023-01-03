@@ -8,7 +8,7 @@ if(NOT APPLE AND ${WITH_OPENMP})
    target_compile_options(openmp_parallel PUBLIC "${OpenMP_CXX_FLAGS}" )
    target_link_libraries(openmp_parallel PUBLIC OpenMP::OpenMP_CXX)
    target_include_directories(openmp_parallel PUBLIC "../util/")
-   add_test(NAME "Set:_OpenMP_Mandelbrot" COMMAND serial) 
+   add_test(NAME "Set:_OpenMP_Mandelbrot" COMMAND openmp_parallel ) 
 endif()
 
 add_executable(serial serial.cpp)
