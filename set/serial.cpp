@@ -9,8 +9,8 @@
 #include <numeric>
 #include <pbm.hpp>
 
-#include "config.h"
-#include "kernel.h"
+#include "config.hpp"
+#include "kernel.hpp"
 
 int main(int argc, char* argv[]) {
   // Defintion of utility

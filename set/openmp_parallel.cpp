@@ -6,8 +6,8 @@
 
 #include <chrono>
 
-#include "config.h"
-#include "kernel.h"
+#include "config.hpp"
+#include "kernel.hpp"
 #include "pbm.hpp"
 
 int main(int argc, char* argv[]) {

@@ -8,8 +8,8 @@
 #include <hpx/parallel/algorithm.hpp>
 #include <pbm.hpp>
 
-#include "config.h"
-#include "kernel.h"
+#include "config.hpp"
+#include "kernel.hpp"
 
 int main(int argc, char* argv[]) {
   size_t output = get_size_t("OUTPUT", 1);

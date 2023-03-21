@@ -11,8 +11,8 @@
 #include <pbm.hpp>
 #include <vector>
 
-#include "config.h"
-#include "kernel.h"
+#include "config.hpp"
+#include "kernel.hpp"
 
 // block executors and allocators are designed to work with NUMA arrays
 using executor_type = hpx::compute::host::block_executor<>;

@@ -10,8 +10,8 @@
 #include <numeric>
 #include <pbm.hpp>
 
-#include "config.h"
-#include "kernel.h"
+#include "config.hpp"
+#include "kernel.hpp"
 
 void launch(size_t begin, size_t end, PBM* pbm) {
   for (size_t i = begin; i < end; i++)

@@ -11,8 +11,8 @@
 #include <pbm.hpp>
 #include <thread>
 
-#include "config.h"
-#include "kernel.h"
+#include "config.hpp"
+#include "kernel.hpp"
 
 int main(int argc, char* argv[]) {
   const size_t nthreads = get_size_t("NUM_THREADS", 3);

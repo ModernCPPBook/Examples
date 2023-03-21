@@ -7,7 +7,7 @@
 #ifndef KERNEL_HPP
 #define KERNEL_HPP
 
-#include "config.h"
+#include "config.hpp"
 
 // Kernel to compute the Mandelbrot set
 inline size_t mandelbrot(complex c) {

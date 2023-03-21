@@ -28,6 +28,9 @@ if(${WITH_HPX})
     
     add_hpx_executable(future_parallel_hpx SOURCES future_parallel_hpx.cpp)
     add_test(NAME "Set:_HPX_Future_Mandelbrot" COMMAND future_parallel_hpx)
+
+
+    add_hpx_executable(distributed_fractal_hpx SOURCES distributed_fractal_main.cpp)
 endif()
 
 if(${WITH_COROUTINES})
@@ -58,6 +61,7 @@ if(${WITH_HPX})
     target_include_directories(algorithm_parallel PUBLIC "../util/")
     target_include_directories(numa_parallel PUBLIC "../util/")
     target_include_directories(future_parallel_hpx PUBLIC "../util/")
+    target_include_directories(distributed_fractal_hpx PUBLIC "../util/")
 endif()
 
 if(${WITH_COROUTINES})
