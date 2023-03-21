@@ -1,6 +1,6 @@
 #ifndef TAYLOR_ACTION_HPP
 
-#define TAYLOR_ACTION_HPP 
+#define TAYLOR_ACTION_HPP
 
 static double compute(data_client client, double x) {
   data d = client.get_data().get();

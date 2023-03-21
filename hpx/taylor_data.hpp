@@ -1,6 +1,6 @@
 #ifndef TAYLOR_DATA_HPP
 
-#define TAYLOR_DATA_HPP 
+#define TAYLOR_DATA_HPP
 
 struct data {
   data() : size_(0) {}

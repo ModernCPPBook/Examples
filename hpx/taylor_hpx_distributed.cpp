@@ -12,6 +12,7 @@
 #include "taylor_component.hpp"
 #include "taylor_action.hpp"
 
+
 int main(int args, char** argv) {
   int n = std::stoi(argv[1]);
   double x = std::stod(argv[2]);

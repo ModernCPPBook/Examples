@@ -1,6 +1,6 @@
 #ifndef TAYLOR_COMPONENT_HPP
 
-#define TAYLOR_COMPONENT_HPP 
+#define TAYLOR_COMPONENT_HPP
 
 struct data_server : hpx::components::component_base<data_server> {
   // Construct a new instance

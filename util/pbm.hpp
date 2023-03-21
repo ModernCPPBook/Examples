@@ -77,9 +77,7 @@ class PBM_ {
   }
 
   // get or set a row at j
-  std::vector<int>& row(int j) {
-      return values.at(j);
-  }
+  std::vector<int>& row(int j) { return values.at(j); }
 
   // save to a file
   void save(const std::string& fname) {

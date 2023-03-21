@@ -21,21 +21,21 @@ inline size_t mandelbrot(complex c) {
   return 0;
 }
 
-inline double get_double(const char *varname,double defval) {
-    const char *strval = getenv(varname);
-    double retval;
-    if(strval == nullptr) {
-        retval = defval;
-    } else {
-        std::stringstream ss(strval);
-        ss >> retval;
-    }
-    std::cout << "Using " << varname << "=" << retval << std::endl;
-    return retval;
+inline double get_double(const char *varname, double defval) {
+  const char *strval = getenv(varname);
+  double retval;
+  if (strval == nullptr) {
+    retval = defval;
+  } else {
+    std::stringstream ss(strval);
+    ss >> retval;
+  }
+  std::cout << "Using " << varname << "=" << retval << std::endl;
+  return retval;
 }
 
 inline std::complex<double> get_const() {
-  return {get_double("C_REAL",-.4),get_double("C_IMAG",.6)};
+  return {get_double("C_REAL", -.4), get_double("C_IMAG", .6)};
 }
 
 const std::complex<double> julia_const = get_const();

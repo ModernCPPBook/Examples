@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 
   std::vector<int> pixels(size * size_y);
 
-  //#pragma omp parallel for
+  // #pragma omp parallel for
   for (size_t i = start; i < end; i++) {
     complex c =
         complex(0, 4) * complex(i, 0) / complex(size_x, 0) - complex(0, 2);
