@@ -76,6 +76,11 @@ class PBM_ {
     return values[i][j];
   }
 
+  // get or set a row at j
+  std::vector<int>& row(int j) {
+      return values.at(j);
+  }
+
   // save to a file
   void save(const std::string& fname) {
     std::ofstream f(fname);
