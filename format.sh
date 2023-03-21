@@ -11,7 +11,7 @@ if [ ! -f ".clang-format" ]; then
 
 	echo "Generate clang format configuration file"
 	clang-format -style=Google -dump-config > .clang-format 
-    sed -i 's/SortIncludes:     CaseSensitive/SortIncludes:false/g' .clang-format
+    sed -i 's/SortIncludes:     CaseSensitive/SortIncludes:Never/g' .clang-format
 fi
 
 echo "Formating header files"
