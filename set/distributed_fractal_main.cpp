@@ -4,13 +4,14 @@
 #include "distributed_fractal_worker.hpp"
 
 int main() {
+
   auto locs = hpx::find_all_localities();
   // The supervisor
   auto supervisor = locs[0];
 
   // Compute the number of worker localities
   const int num_workers = locs.size() - 1;
-
+  
   // Make sure we have some workers
   assert(num_workers > 0);
 
