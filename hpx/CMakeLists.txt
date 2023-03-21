@@ -34,7 +34,7 @@ add_hpx_executable(serialization SOURCES serialization.cpp)
 add_test(NAME "HPX:_serialization" COMMAND serialization)
 
 add_hpx_executable(taylor_hpx_distributed SOURCES taylor_hpx_distributed.cpp)
-add_test(NAME "HPX:_Taylor_distributed" COMMAND taylor_hpx_distributed)
+add_test(NAME "HPX:_Taylor_distributed" COMMAND taylor_hpx_distributed 100 0.5)
 
 if(${WITH_COROUTINES})
   #add_hpx_executable(taylor_hpx_future_coroutine SOURCES taylor_hpx_future_coroutine.cpp)

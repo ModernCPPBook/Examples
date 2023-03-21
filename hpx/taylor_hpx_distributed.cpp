@@ -19,8 +19,6 @@ int main(int args, char** argv) {
   std::vector<hpx::id_type> localities = hpx::find_all_localities();
   std::size_t amount = localities.size();
 
-  std::cout << amount << std::endl;
-
   size_t partitions = std::round(n / amount);
 
   std::vector<data_client> parts(amount);
