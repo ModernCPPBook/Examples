@@ -7,6 +7,7 @@ std::chrono::high_resolution_clock::time_point start, finish;
 
 std::atomic<int> next_work_item(0);
 std::atomic<int> completed_work_items(0);
+size_t output = get_size_t("OUTPUT", 1);
 
 PBM p(size_x, size_y);
 
@@ -27,7 +28,7 @@ void send_result(const std::vector<int>& result, int item_index) {
       auto duration =
           std::chrono::duration_cast<std::chrono::microseconds>(finish - start);
       std::cout << "duration: " << (duration.count() * 1e-6) << std::endl;
-      if ( get_size_t("OUTPUT", 1) == 1)
+      if ( output == 1)
       p.save("image_distributed.pbm");
     }
   }
