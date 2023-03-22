@@ -27,6 +27,7 @@ void send_result(const std::vector<int>& result, int item_index) {
       auto duration =
           std::chrono::duration_cast<std::chrono::microseconds>(finish - start);
       std::cout << "duration: " << (duration.count() * 1e-6) << std::endl;
+      if ( get_size_t("OUTPUT", 1) == 1)
       p.save("image_distributed.pbm");
     }
   }
