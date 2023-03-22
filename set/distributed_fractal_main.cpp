@@ -17,6 +17,9 @@ int main() {
   // The logic below assumes more work than workers
   assert(num_workers < size_x and num_workers < size_y);
 
+  if ( supervisor == hpx::find_here())
+    p = PBM(size_x, size_y);
+
   start = std::chrono::high_resolution_clock::now();
 
   // Place to hold futures for current worker tasks

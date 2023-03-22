@@ -9,7 +9,7 @@ std::atomic<int> next_work_item(0);
 std::atomic<int> completed_work_items(0);
 size_t output = get_size_t("OUTPUT", 1);
 
-PBM p(size_x, size_y);
+PBM p;
 
 // Called by workers to get an item of work from the supervisor
 int get_work() { return next_work_item++; }
