@@ -11,8 +11,6 @@ add_test(NAME "SL:_Array_language" COMMAND array_language)
 add_executable(array_container array_container.cpp)
 add_test(NAME "SL:_Array_container" COMMAND array_container)
 
-add_executable(benchmark_containers benchmark_containers.cpp)
-add_test(NAME "SL:_Benchmark_containers" COMMAND benchmark_containers 100)
 
 # No test, since user input is needed
 add_executable(median median.cpp)

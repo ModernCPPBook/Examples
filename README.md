@@ -20,3 +20,7 @@ All the examples for the fractal sets of the book can be found [here](https://gi
 ### Appendix
 
 All the examples for the Appendix of the book can be found [here](https://github.com/ModernCPPBook/Examples/tree/main/appendix). Here, we look into advanced C++ features like ranges, replacement new, move semantics, and lambda funcitons. 
+
+### Benchmarks
+
+The scripts to run the benchmarks are available [here](https://github.com/ModernCPPBook/Examples/tree/main/scripts). The code for the benchmarks which is not discussded in the books is available [here](). 
