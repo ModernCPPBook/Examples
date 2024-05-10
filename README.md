@@ -1,5 +1,6 @@
 # Examples [![Codacy Badge](https://app.codacy.com/project/badge/Grade/aec4198787bc4d28a8bff6152c7c393e)](https://www.codacy.com/gh/ModernCPPBook/Examples/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ModernCPPBook/Examples&amp;utm_campaign=Badge_Grade) [![CircleCI](https://circleci.com/gh/ModernCPPBook/Examples.svg?style=shield)](https://circleci.com/gh/ModernCPPBook/Examples)
 
+Code exmaples of the book "Parallel C++: Efficient and Scalable High-Performance Parallel Programming".  
 
 ## Outline
 
