@@ -15,7 +15,9 @@ The benchmarks can be build as
 
 ### Benchmarks
 
-The scripts to run the benchmarks are available [here](https://github.com/ModernCPPBook/Examples/tree/main/scripts). The code for the benchmarks which are not discussded in detail in the book are available [here](https://github.com/ModernCPPBook/Examples/tree/main/benchmark).
+The slurm scripts to run the benchmarks are available [here](https://github.com/ModernCPPBook/Examples/tree/main/scripts). 
+
+The code for the benchmarks which are not discussded in detail in the book are available in the [benchmark](https://github.com/ModernCPPBook/Examples/tree/main/benchmark) folder.
 
 The benchmarks can be build as
 
