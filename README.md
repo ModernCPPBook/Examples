@@ -5,7 +5,6 @@
 
 ### Jupyter Notebooks
 
-
  
 ### Pure C++ examples
 
