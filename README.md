@@ -19,11 +19,10 @@ After the Docker image is started, a tab with the JupyterHub instance will be op
 For more details, we refer to Chapter 1 of the book. Recall to use the C++ 17 cling kernel to compile
 C++ code using the C++ Explorer [1].
 
-### Pure C++ examples
+### C++ examples
 
-The examples using the Message Passing Interface ([MPI](https://www.open-mpi.org/)) or [OpenMP](https://www.openmp.org/) are not working in the Jupyter Notebooks. In addition, the distrbuted HPX examples are not working within Jupyter Notebooks. Therefore, the code is available as C++ files [here]().
+The examples using the Message Passing Interface ([MPI](https://www.open-mpi.org/)) or [OpenMP](https://www.openmp.org/) are not working in the Jupyter Notebooks. In addition, the distrbuted HPX examples are not working within Jupyter Notebooks. Therefore, the code is available as C++ files in the [cpp](https://github.com/ModernCPPBook/Examples/tree/main/cpp) folder.
 
-The benchmarks can be build as
 
 
 ### Benchmarks
