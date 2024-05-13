@@ -1,11 +1,11 @@
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_11_1 SOURCES Listing_11_1.cpp)
 endif()
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_11_2 SOURCES Listing_11_2.cpp)
 endif()
 if(${WITH_HPX})
-	# add hpx compile
-target_include_directories(Listing_11_3 PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)
+	add_hpx_executable(Listing_11_3 SOURCES Listing_11_3.cpp)
+	target_include_directories(Listing_11_3 PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)
 
 endif()

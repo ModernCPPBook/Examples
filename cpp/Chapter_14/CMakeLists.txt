@@ -1,12 +1,12 @@
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_14_7 SOURCES Listing_14_7.cpp)
 endif()
 if(${WITH_MPI})
 	add_executable(Listing_14_1 Listing_14_1.cpp)
 endif()
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_14_5 SOURCES Listing_14_5.cpp)
 endif()
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_14_2 SOURCES Listing_14_2.cpp)
 endif()

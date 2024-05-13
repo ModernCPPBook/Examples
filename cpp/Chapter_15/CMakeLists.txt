@@ -1,9 +1,9 @@
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_15_2 SOURCES Listing_15_2.cpp)
 endif()
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_15_7 SOURCES Listing_15_7.cpp)
 endif()
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_15_5 SOURCES Listing_15_5.cpp)
 endif()

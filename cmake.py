@@ -27,12 +27,16 @@ LANGUAGES CXX)\n""")
 f.write("SET(WITH_MPI OFF CACHE BOOL \"Build MPI example\")\n")
 f.write("SET(WITH_HPX OFF CACHE BOOL \"Build HPX examples\")\n")
 f.write("include(CTest)\n")
-f.write("add_subdirectory(cpp)\n")
 f.write("include(CheckCXXCompilerFlag)\n\n")
 f.write("check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)\n\n")
 f.write("""if(${WITH_MPI})
     find_package(MPI REQUIRED COMPONENTS CXX )
-endif()""")
+endif()\n""")
+f.write("""if(${WITH_HPX})
+    find_package(HPX REQUIRED)
+endif()\n\n""")
+f.write("set(EXECUTABLE_OUTPUT_PATH \"${PROJECT_BINARY_DIR}/bin\")\n")
+f.write("add_subdirectory(cpp)\n")
 f.close()
 
 folders = set()
@@ -51,13 +55,13 @@ for filename in glob.iglob("cpp"+"**/**/*.cpp",recursive=True):
         command="add_executable(" + exe + " " + name + ")\n"
         file.write("\t"+command)
         if findInFile(filename,"pbm.hpp") or findInFile(filename,"config.hpp"):
-            file.write("target_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
+            file.write("\ttarget_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
         file.write("endif()\n")
     elif findInFile(filename,"hpx.hpp"):
         file.write("if(${WITH_HPX})\n")
-        file.write("\t# add hpx compile\n")
+        file.write("\tadd_hpx_executable("+ exe + " SOURCES " + name +")\n")
         if findInFile(filename,"pbm.hpp"):
-            file.write("target_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
+            file.write("\ttarget_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
         file.write("endif()\n")
     else:
         if findInFile(filename,"std::views") or findInFile(filename,"for (int index = 0; const int value : values)"):

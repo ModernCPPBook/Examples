@@ -1,3 +1,3 @@
 if(${WITH_HPX})
-	# add hpx compile
+	add_hpx_executable(Listing_10_4 SOURCES Listing_10_4.cpp)
 endif()
