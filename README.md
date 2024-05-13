@@ -43,8 +43,8 @@ make
 
 and the follwoing options are availabe
 
-* `WITH_MPI` - Builds the MPI examples (Default OFF)
-* `WITH_HPX` - Builds the HPX examples (Default OFF)
+* `WITH_MPI` - Builds the MPI examples (Default OFF): Requires MPI
+* `WITH_HPX` - Builds the HPX examples (Default OFF): Requires HPX compiled with networking
 
 ## References
 
