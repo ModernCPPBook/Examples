@@ -1,0 +1,5 @@
+add_executable(Listing_20_4 Listing_20_4.cpp)
+if("${HAVE_FLAG_STD_CXX20}" AND NOT ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
+add_executable(Listing_20_10 Listing_20_10.cpp)
+SET_PROPERTY(TARGET Listing_20_10 PROPERTY CXX_STANDARD 20)
+endif()
