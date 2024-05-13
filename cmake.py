@@ -50,7 +50,7 @@ for filename in glob.iglob("cpp"+"**/**/*.cpp",recursive=True):
         file.write("if(${WITH_MPI})\n")
         command="add_executable(" + exe + " " + name + ")\n"
         file.write("\t"+command)
-        if findInFile(filename,"pbm.hpp"):
+        if findInFile(filename,"pbm.hpp") or findInFile(filename,"config.hpp"):
             file.write("target_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
         file.write("endif()\n")
     elif findInFile(filename,"hpx.hpp"):
