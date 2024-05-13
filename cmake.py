@@ -31,7 +31,7 @@ f.write("add_subdirectory(cpp)\n")
 f.write("include(CheckCXXCompilerFlag)\n\n")
 f.write("check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)\n\n")
 f.write("""if(${WITH_MPI})
-    find_package(MPI REQUIRED COMPONENTS CXX )	
+    find_package(MPI REQUIRED COMPONENTS CXX )
 endif()""")
 f.close()
 
@@ -48,7 +48,8 @@ for filename in glob.iglob("cpp"+"**/**/*.cpp",recursive=True):
     
     if findInFile(filename,"mpi.h"):
         file.write("if(${WITH_MPI})\n")
-        file.write("\t# add mpi compile\n")
+        command="add_executable(" + exe + " " + name + ")\n"
+        file.write("\t"+command)
         if findInFile(filename,"pbm.hpp"):
             file.write("target_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
         file.write("endif()\n")
@@ -59,7 +60,7 @@ for filename in glob.iglob("cpp"+"**/**/*.cpp",recursive=True):
             file.write("target_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
         file.write("endif()\n")
     else:
-        if findInFile(filename,"std::views"):
+        if findInFile(filename,"std::views") or findInFile(filename,"for (int index = 0; const int value : values)"):
             file.write("if(\"${HAVE_FLAG_STD_CXX20}\" AND NOT (\"${CMAKE_CXX_COMPILER_ID}\" MATCHES \"Clang\"))\n")
             command="add_executable(" + exe + " " + name + ")\n"
             file.write(command)

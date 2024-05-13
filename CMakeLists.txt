@@ -17,5 +17,5 @@ include(CheckCXXCompilerFlag)
 check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)
 
 if(${WITH_MPI})
-    find_package(MPI REQUIRED COMPONENTS CXX )	
+    find_package(MPI REQUIRED COMPONENTS CXX )
 endif()
