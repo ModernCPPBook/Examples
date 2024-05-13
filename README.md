@@ -37,9 +37,14 @@ The benchmarks can be build as
 cd benchmark
 mkdir build 
 cd build 
-cmake -DWITH_OPENMP=ON ..
+cmake -DWITH_MPI=ON ..
 make 
 ```
+
+and the follwoing options are availabe
+
+* `WITH_MPI` - Builds the MPI examples (Default OFF)
+* `WITH_HPX` - Builds the HPX examples (Default OFF)
 
 ## References
 

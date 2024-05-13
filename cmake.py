@@ -60,8 +60,7 @@ for filename in glob.iglob("cpp"+"**/**/*.cpp",recursive=True):
     elif findInFile(filename,"hpx.hpp"):
         file.write("if(${WITH_HPX})\n")
         file.write("\tadd_hpx_executable("+ exe + " SOURCES " + name +")\n")
-        if findInFile(filename,"pbm.hpp"):
-            file.write("\ttarget_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
+        file.write("\ttarget_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
         file.write("endif()\n")
     else:
         if findInFile(filename,"std::views") or findInFile(filename,"for (int index = 0; const int value : values)"):
