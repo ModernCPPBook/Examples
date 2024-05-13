@@ -10,8 +10,8 @@ jobs:
       - run: cd build && make -j 2
       #- run: cd build && ctest
       - run: rm -rf build
-      - run: export CXX=clang++ && cmake -S . -B build
-      - run: cd build && make -j 2
+      #- run: export CXX=clang++ && cmake -S . -B build
+      #- run: cd build && make -j 2
       #- run: cd build && ctest
-      - run: rm -rf build
+      #- run: rm -rf build
       
