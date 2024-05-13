@@ -73,9 +73,13 @@ for filename in glob.iglob("cpp"+"**/**/*.cpp",recursive=True):
             file.write("target_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
 
     file.close()
-    #print(filename,name,exe,folder)
 
 file = open("cpp/CMakeLists.txt","w")
+file.write("""# Copyright (c) 2022 AUTHORS
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)\n
+""")
 for folder in folders:
     file.write("add_subdirectory("  + folder + ")\n")
 file.close()
