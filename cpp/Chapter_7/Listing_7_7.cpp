@@ -10,7 +10,7 @@ double* data = new double[sz];
 void update(int n) {
     for(int j=0;j<partial_sz;j++) {
         // Do part of the sum on a local variable, partial_sum
-        double partial_sum = 0;
+        double partial_sum = {0};
         for(int i=0;i<partial_sz;i++) {
             partial_sum += data[i];
         }
