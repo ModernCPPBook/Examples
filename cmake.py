@@ -69,6 +69,10 @@ for filename in glob.iglob("cpp"+"**/**/*.cpp",recursive=True):
             file.write("\tif(${WITH_HPX_SIMD})\n")
             file.write("\t\tadd_hpx_executable("+ exe + " SOURCES " + name +")\n")
             file.write("\tendif()\n")
+        elif findInFile(filename,"co_await"):
+            file.write("\tif(${WITH_HPX_COROUTINE})\n")
+            file.write("\t\tadd_hpx_executable("+ exe + " SOURCES " + name +")\n")
+            file.write("\tendif()\n")
         else:
             file.write("\tadd_hpx_executable("+ exe + " SOURCES " + name +")\n")
             file.write("\ttarget_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
