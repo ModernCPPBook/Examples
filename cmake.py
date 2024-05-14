@@ -25,10 +25,16 @@ f.write("""project(Examples
 DESCRIPTION "Book examples"
 LANGUAGES CXX)\n""")
 f.write("SET(WITH_MPI OFF CACHE BOOL \"Build MPI example\")\n")
-f.write("SET(WITH_HPX OFF CACHE BOOL \"Build HPX examples\")\n")
+f.write("SET(WITH_HPX_SIMD OFF CACHE BOOL \"Build HPX SIMD example\")\n")
+f.write("SET(WITH_HPX_COROUTINE OFF CACHE BOOL \"Build HPX COROUTINE example\")\n")
 f.write("include(CTest)\n")
 f.write("include(CheckCXXCompilerFlag)\n\n")
 f.write("check_cxx_compiler_flag(-std=c++20 HAVE_FLAG_STD_CXX20)\n\n")
+f.write("""if(${HAVE_FLAG_STD_CXX20})
+    set(CMAKE_CXX_STANDARD 20)
+else()
+    set(CMAKE_CXX_STANDARD 17)
+endif()\n""")
 f.write("""if(${WITH_MPI})
     find_package(MPI REQUIRED COMPONENTS CXX )
 endif()\n""")
@@ -59,8 +65,13 @@ for filename in glob.iglob("cpp"+"**/**/*.cpp",recursive=True):
         file.write("endif()\n")
     elif findInFile(filename,"hpx.hpp"):
         file.write("if(${WITH_HPX})\n")
-        file.write("\tadd_hpx_executable("+ exe + " SOURCES " + name +")\n")
-        file.write("\ttarget_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
+        if findInFile(filename,"hpx::execution::simd"):
+            file.write("\tif(${WITH_HPX_SIMD})\n")
+            file.write("\t\tadd_hpx_executable("+ exe + " SOURCES " + name +")\n")
+            file.write("\tendif()\n")
+        else:
+            file.write("\tadd_hpx_executable("+ exe + " SOURCES " + name +")\n")
+            file.write("\ttarget_include_directories("+exe+" PUBLIC ${CMAKE_SOURCE_DIR}/cpp/include/)\n\n")
         file.write("endif()\n")
     else:
         if findInFile(filename,"std::views") or findInFile(filename,"for (int index = 0; const int value : values)"):
