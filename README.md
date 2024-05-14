@@ -46,6 +46,7 @@ and the follwoing options are availabe
 * `WITH_MPI` - Builds the MPI examples (Default OFF): Requires MPI
 * `WITH_HPX` - Builds the HPX examples (Default OFF): Requires HPX compiled with networking
 * `WITH_HPX_SIMD` - Builds the HPX example with SIMD (Default OFF): Requires HPX compiled with SIMD 
+* `WITH_HPX_COROUTINES` - Builds the HPX examples with COROUTINES (Default OFF): Requires HPX compiled with C++ 20 
 
 ## References
 
